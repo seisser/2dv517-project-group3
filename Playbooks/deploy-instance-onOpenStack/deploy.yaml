@@ -5,5 +5,9 @@
       os_server:
         name: testinstance
         state: present
-        image: Ubuntu 18.04 LTS 
+        region_name: RegionOne
+        image: Ubuntu server 20.04
+        availability_zone: Education
+        network: "test"
+        auto_ip: yes
         flavor_ram: 4096
