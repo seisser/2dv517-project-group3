@@ -3,7 +3,7 @@
   hosts: localhost
   
   tasks:
-  - name: Webserver1
+  - name: Setting up instance for webserver1
     os_server:
       name: Webserver1
       state: present
@@ -13,7 +13,7 @@
       network: "test"
       auto_ip: false
       flavor_ram: 1024
-  - name: Webserver2
+  - name: Setting up instance for webserver2
     os_server:
       name: Webserver2
       state: present
@@ -23,7 +23,7 @@
       network: "test"
       auto_ip: false
       flavor_ram: 1024
-  - name: Webserver3
+  - name: Setting up instance for webserver3
     os_server:
       name: Webserver3
       state: present
@@ -33,3 +33,43 @@
       network: "test"
       auto_ip: false
       flavor_ram: 1024
+  - name: Setting up instance for NGINX/loadbalancer
+    os_server:
+      name: NGINX/loadbalancer
+      state: present
+      region_name: RegionOne
+      image: Ubuntu server 20.04
+      availability_zone: Education
+      network: "test"
+      auto_ip: false
+      flavor_ram: 1024
+  - name: Setting up instance for file server
+    os_server:
+      name: File server
+      state: present
+      region_name: RegionOne
+      image: Ubuntu server 20.04
+      availability_zone: Education
+      network: "test"
+      auto_ip: false
+      flavor_ram: 1024
+  - name: Setting up instance for database master
+    os_server:
+      name: DB_master
+      state: present
+      region_name: RegionOne
+      image: Ubuntu server 20.04
+      availability_zone: Education
+      network: "test"
+      auto_ip: false
+      flavor_ram: 1024
+  - name: Setting up instance for database slave
+    os_server:
+      name: DB_slave
+      state: present
+      region_name: RegionOne
+      image: Ubuntu server 20.04
+      availability_zone: Education
+      network: "test"
+      auto_ip: false
+      flavor_ram: 1024  
