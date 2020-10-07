@@ -1,0 +1,25 @@
+---
+- name: Create Openstack network infrastructure
+  hosts: localhost
+  vars_files:
+    - ./vars-etc/network-vars.yml
+  tasks:
+        - name: Delete router
+          os_router:
+            name: "{{ routername }}"
+            network: public
+            interfaces: "{{ subnetworkname }}"
+            state: absent
+
+        - name: Delete subnet
+          os_subnet:
+            name: "{{ subnetworkname }}"
+            network_name: "{{ networkname }}"
+            cidr: "{{ iprange }}"
+            state: absent
+
+        - name: Delete network
+          os_network:
+            name: "{{ networkname }}"
+            state: absent
+

@@ -1,0 +1,25 @@
+---
+- name: Create Openstack network infrastructure
+  hosts: localhost
+  vars_files:
+    - ./vars-etc/network-vars.yml
+  tasks:
+        - name: Create network
+          os_network:
+            name: "{{ networkname }}"
+            state: present
+
+        - name: Create subnet
+          os_subnet:
+            name: "{{ subnetworkname }}"
+            network_name: "{{ networkname }}"
+            cidr: "{{ iprange }}"
+            state: present
+
+        - name: Create router
+          os_router:
+            name: "{{ routername }}"
+            network: public
+            interfaces: "{{ subnetworkname }}"
+            state: present
+
