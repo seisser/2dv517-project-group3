@@ -1,0 +1,9 @@
+- name: Create OpenStack instance
+  hosts: localhost
+  tasks:
+    - name: Deploy an instance
+      os_server:
+        name: testinstance
+        state: present
+        image: Ubuntu 18.04 LTS 
+        flavor_ram: 4096
