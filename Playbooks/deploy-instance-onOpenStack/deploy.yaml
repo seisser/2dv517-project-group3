@@ -1,13 +1,35 @@
-- name: Create OpenStack instance
+---
+- name: Create OpenStack instances
   hosts: localhost
+  
   tasks:
-    - name: Deploy an instance
-      os_server:
-        name: testinstance
-        state: present
-        region_name: RegionOne
-        image: Ubuntu server 20.04
-        availability_zone: Education
-        network: "test"
-        auto_ip: yes
-        flavor_ram: 4096
+  - name: Webserver1
+    os_server:
+      name: Webserver1
+      state: present
+      region_name: RegionOne
+      image: Ubuntu server 20.04
+      availability_zone: Education
+      network: "test"
+      auto_ip: false
+      flavor_ram: 1024
+  - name: Webserver2
+    os_server:
+      name: Webserver2
+      state: present
+      region_name: RegionOne
+      image: Ubuntu server 20.04
+      availability_zone: Education
+      network: "test"
+      auto_ip: false
+      flavor_ram: 1024
+  - name: Webserver3
+    os_server:
+      name: Webserver3
+      state: present
+      region_name: RegionOne
+      image: Ubuntu server 20.04
+      availability_zone: Education
+      network: "test"
+      auto_ip: false
+      flavor_ram: 1024
