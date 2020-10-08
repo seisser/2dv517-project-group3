@@ -1,0 +1,15 @@
+- name: Create Security Groups and Rules
+  hosts: localhost
+  tasks:
+    - name: Create SSH Security Group
+      os_security_group:
+        state: present
+        name: SSH
+        description: SSH security group
+    - name: Add SSH rule
+      os_security_group_rule:
+        security_group: SSH
+        protocol: tcp
+        port_range_min: 22
+        port_range_max: 22
+        remote_ip_prefix: 0.0.0.0/0
