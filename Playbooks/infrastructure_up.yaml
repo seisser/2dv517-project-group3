@@ -2,7 +2,7 @@
 - name: Create OpenStack instances
   hosts: localhost
   vars_files:
-    - ./vars-etc/variables.yaml
+    - ./vars-etc/instances-vars.yaml
   
   tasks:
   - name: "{{ setupweb }} 1"
