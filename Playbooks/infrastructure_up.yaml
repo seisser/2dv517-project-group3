@@ -12,7 +12,7 @@
       region_name: RegionOne
       image: Ubuntu server 20.04
       availability_zone: Education
-      network: "test"
+      network: "{{ network }}"
       auto_ip: false
       flavor_ram: 1024
       
@@ -23,7 +23,7 @@
       region_name: RegionOne
       image: Ubuntu server 20.04
       availability_zone: Education
-      network: "test"
+      network: "{{ network }}"
       auto_ip: false
       flavor_ram: 1024
       
@@ -34,7 +34,7 @@
       region_name: RegionOne
       image: Ubuntu server 20.04
       availability_zone: Education
-      network: "test"
+      network: "{{ network }}"
       auto_ip: false
       flavor_ram: 1024
       
@@ -45,7 +45,7 @@
       region_name: RegionOne
       image: Ubuntu server 20.04
       availability_zone: Education
-      network: "test"
+      network: "{{ network }}"
       auto_ip: false
       flavor_ram: 1024
       
@@ -56,18 +56,18 @@
       region_name: RegionOne
       image: Ubuntu server 20.04
       availability_zone: Education
-      network: "test"
+      network: "{{ network }}"
       auto_ip: false
       flavor_ram: 1024
       
-  - name: "{{ setupdbmaster }}"
+  - name: "{{ network }}"
     os_server:
       name: DB_master
       state: present
       region_name: RegionOne
       image: Ubuntu server 20.04
       availability_zone: Education
-      network: "test"
+      network: "{{ network }}"
       auto_ip: false
       flavor_ram: 1024
       
@@ -78,6 +78,6 @@
       region_name: RegionOne
       image: Ubuntu server 20.04
       availability_zone: Education
-      network: "test"
+      network: "{{ network }}"
       auto_ip: false
       flavor_ram: 1024  
