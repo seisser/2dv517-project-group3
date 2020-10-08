@@ -5,7 +5,7 @@
     - ./vars-etc/variables.yaml
   
   tasks:
-  - name: Setting up instance for webserver1
+  - name: "{{ setupweb }} 1"
     os_server:
       name: Webserver1
       state: present
@@ -15,7 +15,8 @@
       network: "test"
       auto_ip: false
       flavor_ram: 1024
-  - name: Setting up instance for webserver2
+      
+  - name: "{{ setupweb }} 2"
     os_server:
       name: Webserver2
       state: present
@@ -25,7 +26,8 @@
       network: "test"
       auto_ip: false
       flavor_ram: 1024
-  - name: Setting up instance for webserver3
+      
+  - name: "{{ setupweb }} 3"
     os_server:
       name: Webserver3
       state: present
@@ -35,7 +37,8 @@
       network: "test"
       auto_ip: false
       flavor_ram: 1024
-  - name: Setting up instance for NGINX/loadbalancer
+      
+  - name: "{{ setupnginx }}"
     os_server:
       name: NGINX/loadbalancer
       state: present
@@ -45,7 +48,8 @@
       network: "test"
       auto_ip: false
       flavor_ram: 1024
-  - name: Setting up instance for file server
+      
+  - name: "{{ setupfile }}"
     os_server:
       name: File server
       state: present
@@ -55,7 +59,8 @@
       network: "test"
       auto_ip: false
       flavor_ram: 1024
-  - name: Setting up instance for database master
+      
+  - name: "{{ setupdbmaster }}"
     os_server:
       name: DB_master
       state: present
@@ -65,7 +70,8 @@
       network: "test"
       auto_ip: false
       flavor_ram: 1024
-  - name: Setting up instance for database slave
+      
+  - name: "{{ setupdbslave }}"
     os_server:
       name: DB_slave
       state: present
