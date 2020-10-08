@@ -1,6 +1,8 @@
 #! /bin/bash
 
 # This script will update and upgrade The OS and install Ansible.
+# Following the docs from:
+# https://docs.openstack.org/project-deploy-guide/openstack-ansible/ocata/deploymenthost.html
 #
 # Author: Renato Opazo Salgado
 # Date: 2020-10-05
@@ -23,12 +25,18 @@ if ! echo "$OSTYPE" | grep -iq "linux"; then
 	exit 1
 fi
 
+# Swap size: 1000 = 1GB, 3000 = 3GB and so on.
+SWAP_CUSTOM_SIZE=3000
+
+apt-add-repository -qy ppa:ansible/ansible
 apt update
 apt -qy upgrade
 apt -qy install ufw
-apt-get -y install ntp ntpdate
+apt -y install aptitude build-essential git ntp ntpdate \
+openssh-server python-dev sudo
+apt -y install ansible
 ufw allow ssh
-ufw enable
+ufw --force enable
 
 cd /var
 touch swap.img
