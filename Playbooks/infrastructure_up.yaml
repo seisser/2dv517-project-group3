@@ -60,7 +60,7 @@
       auto_ip: false
       flavor_ram: 1024
       
-  - name: "{{ network }}"
+  - name: "{{ setupdbmaster }}"
     os_server:
       name: DB_master
       state: present
