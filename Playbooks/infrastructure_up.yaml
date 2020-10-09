@@ -15,6 +15,9 @@
       network: "{{ network }}"
       auto_ip: false
       flavor_ram: 1024
+      security_groups:
+         - SSH
+         - default      
       
   - name: "{{ setupweb }} 2"
     os_server:
@@ -26,6 +29,9 @@
       network: "{{ network }}"
       auto_ip: false
       flavor_ram: 1024
+      security_groups:
+         - SSH
+         - default      
       
   - name: "{{ setupweb }} 3"
     os_server:
@@ -37,6 +43,9 @@
       network: "{{ network }}"
       auto_ip: false
       flavor_ram: 1024
+      security_groups:
+         - SSH
+         - default      
       
   - name: "{{ setupnginx }}"
     os_server:
@@ -48,6 +57,9 @@
       network: "{{ network }}"
       auto_ip: false
       flavor_ram: 1024
+      security_groups:
+         - SSH
+         - default      
       
   - name: "{{ setupfile }}"
     os_server:
@@ -59,6 +71,9 @@
       network: "{{ network }}"
       auto_ip: false
       flavor_ram: 1024
+      security_groups:
+         - SSH
+         - default
       
   - name: "{{ setupdbmaster }}"
     os_server:
@@ -70,6 +85,9 @@
       network: "{{ network }}"
       auto_ip: false
       flavor_ram: 1024
+      security_groups:
+         - SSH
+         - default      
       
   - name: "{{ setupdbslave }}"
     os_server:
@@ -80,4 +98,7 @@
       availability_zone: Education
       network: "{{ network }}"
       auto_ip: false
-      flavor_ram: 1024  
+      flavor_ram: 1024
+      security_groups:
+         - SSH
+         - default      
