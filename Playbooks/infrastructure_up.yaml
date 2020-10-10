@@ -1,0 +1,104 @@
+---
+- name: Create OpenStack instances
+  hosts: localhost
+  vars_files:
+    - ./vars-etc/instances-vars.yaml
+  
+  tasks:
+  - name: "{{ setupweb }} 1"
+    os_server:
+      name: Webserver1
+      state: present
+      region_name: RegionOne
+      image: Ubuntu server 20.04
+      availability_zone: Education
+      network: "{{ network }}"
+      auto_ip: false
+      flavor_ram: 1024
+      security_groups:
+         - SSH
+         - default      
+      
+  - name: "{{ setupweb }} 2"
+    os_server:
+      name: Webserver2
+      state: present
+      region_name: RegionOne
+      image: Ubuntu server 20.04
+      availability_zone: Education
+      network: "{{ network }}"
+      auto_ip: false
+      flavor_ram: 1024
+      security_groups:
+         - SSH
+         - default      
+      
+  - name: "{{ setupweb }} 3"
+    os_server:
+      name: Webserver3
+      state: present
+      region_name: RegionOne
+      image: Ubuntu server 20.04
+      availability_zone: Education
+      network: "{{ network }}"
+      auto_ip: false
+      flavor_ram: 1024
+      security_groups:
+         - SSH
+         - default      
+      
+  - name: "{{ setupnginx }}"
+    os_server:
+      name: NGINX/loadbalancer
+      state: present
+      region_name: RegionOne
+      image: Ubuntu server 20.04
+      availability_zone: Education
+      network: "{{ network }}"
+      auto_ip: false
+      flavor_ram: 1024
+      security_groups:
+         - SSH
+         - default      
+      
+  - name: "{{ setupfile }}"
+    os_server:
+      name: File server
+      state: present
+      region_name: RegionOne
+      image: Ubuntu server 20.04
+      availability_zone: Education
+      network: "{{ network }}"
+      auto_ip: false
+      flavor_ram: 1024
+      security_groups:
+         - SSH
+         - default
+      
+  - name: "{{ setupdbmaster }}"
+    os_server:
+      name: DB_master
+      state: present
+      region_name: RegionOne
+      image: Ubuntu server 20.04
+      availability_zone: Education
+      network: "{{ network }}"
+      auto_ip: false
+      flavor_ram: 1024
+      security_groups:
+         - SSH
+         - default      
+      
+  - name: "{{ setupdbslave }}"
+    os_server:
+      name: DB_slave
+      state: present
+      region_name: RegionOne
+      image: Ubuntu server 20.04
+      availability_zone: Education
+      network: "{{ network }}"
+      auto_ip: false
+      flavor_ram: 1024
+      security_groups:
+         - SSH
+         - default      
