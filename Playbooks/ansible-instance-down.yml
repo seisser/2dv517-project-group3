@@ -1,0 +1,9 @@
+---
+- name: Delete OpenStack Ansibleserver1 instance
+  hosts: localhost
+
+  tasks:
+    - name: Delete Ansibleserver1
+      os_server:
+        name: Ansibleserver1
+        state: absent
