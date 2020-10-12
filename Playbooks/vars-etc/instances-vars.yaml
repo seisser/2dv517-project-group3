@@ -1,3 +1,4 @@
+setupansible: Setting up instance for ansible
 setupweb: Setting up instance for webserver
 setupnginx: Setting up instance for NGINX/loadbalancer
 setupdbmaster: Setting up instance for database master

@@ -17,6 +17,9 @@
             cidr: "{{ iprange }}"
             allocation_pool_start: 192.168.0.2
             allocation_pool_end: 192.168.0.32
+            dns_nameservers:
+              - 8.8.8.8
+              - 8.8.4.4
             enable_dhcp: yes
             validate_certs: yes
             state: present
