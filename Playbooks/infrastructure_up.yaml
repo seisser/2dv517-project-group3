@@ -55,7 +55,7 @@
       image: Ubuntu server 20.04
       availability_zone: Education
       network: "{{ network }}"
-      auto_ip: false
+      auto_ip: true
       flavor_ram: 1024
       security_groups:
          - SSH
@@ -101,4 +101,18 @@
       flavor_ram: 1024
       security_groups:
          - SSH
-         - default      
+         - default
+     
+  - name: "{{ setupmonitoring }}"
+    os_server:
+      name: monitoring
+      state: present
+      region_name: RegionOne
+      image: Ubuntu server 20.04
+      availability_zone: Education
+      network: "{{ network }}"
+      auto_ip: false
+      flavor_ram: 1024
+      security_groups:
+         - SSH
+         - default           
