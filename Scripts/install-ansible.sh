@@ -19,5 +19,5 @@ openssh-server python-dev python3-pip sudo
 sudo apt -y install ansible
 
 ansible-galaxy collection install openstack.cloud
-ansible-galaxy install nginxinc.nginx
+ansible-galaxy collection install nginxinc.nginx_core
 pip3 install openstacksdk
