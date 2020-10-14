@@ -1,7 +1,65 @@
 ---
 - hosts: loadbalancer
+  become: yes
   collections:
     - nginxinc.nginx_core
   roles:
     - role: nginx
     - role: nginx_config
+      vars:
+        nginx_config_http_template_enable: true
+        nginx_config_http_template:
+          app:
+            template_file: http/default.conf.j2
+            conf_file_name: default.conf
+            conf_file_location: /etc/nginx/conf.d/
+            servers:
+              loadbalancer:
+                listen:
+                  listen_localhost:
+                    port: 80
+                server_name: localhost
+                access_log:
+                  - name: main
+                    location: /var/log/nginx/access.log
+                reverse_proxy:
+                  locations:
+                    main:
+                      location: /
+                      proxy_pass: http://upstr/
+                      proxy_set_header:
+                        header_host:
+                          name: Host
+                          value: $host
+              server_one:
+                listen:
+                  listen_server_one:
+                    port: 80
+                server_name: 192.168.0.7
+
+              server_two:
+                listen:
+                  listen_server_two:
+                    port: 80
+                server_name: 192.168.0.14
+
+              server_three:
+                listen:
+                  listen_server_two:
+                    port: 80
+                server_name: 192.168.0.17
+
+            upstreams:
+              main:
+                name: upstr
+                lb_method: least_conn
+                servers:
+                  server_one:
+                    address: 192.168.0.7
+                    port: 80
+                  server_two:
+                    address: 192.168.0.14
+                    port: 80
+                  server_three:
+                    address: 192.168.0.17
+                    port: 80
