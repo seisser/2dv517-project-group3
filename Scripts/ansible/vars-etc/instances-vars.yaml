@@ -1,8 +1,0 @@
- 
-setupansible: Setting up instance for ansible
-setupweb: Setting up instance for webserver
-setupnginx: Setting up instance for NGINX/loadbalancer
-setupdbmaster: Setting up instance for database master
-setupdbslave: Setting up instance for database slave
-setupfile: Setting up instance for file server
-network: acme-network
