@@ -3,7 +3,6 @@
   hosts: localhost
   vars_files:
     - ./vars-etc/instances-vars.yaml
-    - ./vars-etc/private-vars.yml
 
   tasks:
     - name: "{{ setupansible }}"
