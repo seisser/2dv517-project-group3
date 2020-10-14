@@ -1,4 +1,13 @@
-#192.168.0.1
-
-[ansible]
-194.47.177.0
+[loadbalancer]
+<IP NGINX/loadbalancer>
+[webservers]
+<IP Webserver1>
+<IP Webserver2>
+<IP Webserver3>
+[fileserver]
+<IP File server>
+[databases]
+<IP DB_master>
+<IP DB_slave>
+[monitor]
+<IP monitoring>
