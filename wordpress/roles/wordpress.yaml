@@ -1,0 +1,36 @@
+---
+- name: Setting up infrastructure for, and installing/configuring, Wordpress
+  remote_user: ubuntu
+  become: true
+  hosts: 192.168.0.5
+  vars_files:
+    - ../vars-etc/wordpress-apache-php.yaml
+  tasks:
+    - name: install php
+      package: name={{ php }} update_cache=yes state=latest
+
+    - name: install apache2
+      package: name={{ apache2 }} state=latest
+
+    - name: configure apache2
+      file:
+        path: "/var/www/html"
+        state: directory
+        owner: "ubuntu"
+        group: "ubuntu"
+        mode: '0775'
+
+    - name: Remove apache default index
+      file:
+        path: /var/www/html/index.html
+        state: absent
+
+    - name: install wordpress(transfer wordpress files)
+      unarchive:
+        src: /home/ubuntu/ansible/acme-site.tar.gz
+        dest: "/var/www/html"
+
+    - name: reload apache2
+      systemd:
+        name: apache2
+        state: reloaded

@@ -10,4 +10,8 @@
 <IP DB_master>
 <IP DB_slave>
 [monitor]
+<<<<<<< HEAD
 <IP monitoring>
+=======
+<IP monitoring>
+>>>>>>> main

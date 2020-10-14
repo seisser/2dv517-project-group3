@@ -6,3 +6,4 @@ setupdbslave: Setting up instance for database slave
 setupfile: Setting up instance for file server
 network: acme-network
 setupmonitoring: Setting up instance for monitoring server
+key_name: aw222zr-2dv517
