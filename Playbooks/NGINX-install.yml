@@ -1,0 +1,7 @@
+---
+- hosts: loadbalancer
+  collections:
+    - nginxinc.nginx_core
+  roles:
+    - role: nginx
+    - role: nginx_config
