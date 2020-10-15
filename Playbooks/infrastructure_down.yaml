@@ -37,3 +37,8 @@
     os_server:
       name: DB_slave
       state: absent                                
+
+  - name: Delete monitoring server
+    os_server:
+      name: monitoring
+      state: absent
