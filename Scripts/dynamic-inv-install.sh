@@ -10,8 +10,8 @@ sed -i 's/python/python3.8/' openstack_inventory.py
 #ansible -i openstack_inventory.py all -m ping
 
 #Få en lista med all openstack info, och skriv den till en fil:
-#./openstack_inventory.py --list > "json-formatted-inventory.json"
-#För att kunna sätta dynamiska ip-adresser till t.ex nginx playbook, så måste man få ut data från denna fil via ansibles json funktionalitet
+#./openstack_inventory.py --list > "json-format-inventory.json"
+#För att kunna sätta dynamiska ip-adresser till t.ex nginx playbook, så måste man få ut data från denna fil via ansibles json-funktionalitet
 
 #Installera på server med t.ex namnet "Webserver1"
 #Dock måste namnet "Webserver1" finnas definierat i playbooken under kommandot "hosts", se nedan exempel(1)
