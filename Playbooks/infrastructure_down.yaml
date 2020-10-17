@@ -40,5 +40,5 @@
 
   - name: Delete monitoring server
     os_server:
-      name: monitoring
+      name: Monitoring
       state: absent

@@ -112,7 +112,7 @@
      
   - name: "{{ setupmonitoring }}"
     os_server:
-      name: monitoring
+      name: Monitoring
       state: present
       region_name: RegionOne
       image: Ubuntu server 20.04
