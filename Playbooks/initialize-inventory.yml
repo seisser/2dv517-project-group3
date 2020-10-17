@@ -88,7 +88,7 @@
         insertbefore: EOF
 
 #File_server
-    - name: Get ip for File server
+    - name: Get ip for File_server
       shell: ./openstack_inventory.py --host File_server
       register: result
     - set_fact:
