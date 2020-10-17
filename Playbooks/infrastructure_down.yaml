@@ -23,9 +23,9 @@
       name: NGINX/loadbalancer
       state: absent
       
-  - name: Delete File server
+  - name: Delete File_server
     os_server:
-      name: File server
+      name: File_server
       state: absent
       
   - name: Delete DB_master
