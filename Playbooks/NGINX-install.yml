@@ -1,5 +1,5 @@
 ---
-- hosts: loadbalancer
+- hosts: nginx
   become: yes
   collections:
     - nginxinc.nginx_core
@@ -35,19 +35,19 @@
                 listen:
                   listen_server_one:
                     port: 80
-                server_name: 192.168.0.7
+                server_name: "{{ hostvars.Webserver1.ansible_host }}"
 
               server_two:
                 listen:
                   listen_server_two:
                     port: 80
-                server_name: 192.168.0.14
+                server_name: "{{ hostvars.Webserver2.ansible_host }}"
 
               server_three:
                 listen:
                   listen_server_two:
                     port: 80
-                server_name: 192.168.0.17
+                server_name: "{{ hostvars.Webserver3.ansible_host }}"
 
             upstreams:
               main:
@@ -55,11 +55,12 @@
                 lb_method: least_conn
                 servers:
                   server_one:
-                    address: 192.168.0.7
+                    address: "{{ hostvars.Webserver1.ansible_host }}"
                     port: 80
                   server_two:
-                    address: 192.168.0.14
+                    address: "{{ hostvars.Webserver2.ansible_host }}"
                     port: 80
                   server_three:
-                    address: 192.168.0.17
+                    address: "{{ hostvars.Webserver3.ansible_host }}"
                     port: 80
+                    
