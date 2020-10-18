@@ -1,0 +1,13 @@
+#ansible-playbook attach-volume.yml --extra-vars "host=Someserver"
+#!!!!!!!!!!!!!!!!!!!!MAKE SURE YOU UNMOUNT THE VOLUME PRIOR TO RUNNING THIS PLAYBOOK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#It is possible that the storage and ubuntu filesystem related to the mounting will get fcked up otherwise
+#sudo umount /dev/sdb /tmp/volume-storage-mount-point/ -t ext4
+---
+- name: Detach volume
+  hosts: localhost
+  tasks:
+  - name: Detaching volume from "{{ host }}"
+    os_server_volume:
+      server: "{{ host }}"
+      volume: File_storage
+      state: absent
