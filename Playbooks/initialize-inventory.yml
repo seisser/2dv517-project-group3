@@ -73,8 +73,8 @@
         insertbefore: EOF
 
 #Monitoring    
-    - name: Get ip for monitoring
-      shell: ./openstack_inventory.py --host monitoring
+    - name: Get ip for Monitoring
+      shell: ./openstack_inventory.py --host Monitoring
       register: result
     - set_fact:
         myvar: "{{ result.stdout | from_json }}" 

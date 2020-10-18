@@ -12,16 +12,16 @@
 
 
 echo "Update apt-cache"
-sudo apt update > /dev/null 2/&1
+sudo apt update > /dev/null 2>&1
 echo "Upgrade system"
-sudo apt -qy upgrade > /dev/null 2/&1
+sudo apt -qy upgrade > /dev/null 2>&1
 echo "Install various packages(ssh, python3 etc)"
 sudo apt -y install aptitude build-essential git ntp ntpdate \
-openssh-server python-dev python3-pip > /dev/null 2/&1
+openssh-server python-dev python3-pip > /dev/null 2>&1
 echo "Install ansible"
-sudo apt -y install ansible > /dev/null 2/&1
+sudo apt -y install ansible > /dev/null 2>&1
 echo "Install ansible-galaxy"
-ansible-galaxy collection install openstack.cloud > /dev/null 2/&1
-ansible-galaxy collection install nginxinc.nginx_core > /dev/null 2/&1
+ansible-galaxy collection install openstack.cloud > /dev/null 2>&1
+ansible-galaxy collection install nginxinc.nginx_core > /dev/null 2>&1
 echo "install openstacksdk"
-pip3 install openstacksdk > /dev/null 2/&1
+pip3 install openstacksdk > /dev/null 2>&1
