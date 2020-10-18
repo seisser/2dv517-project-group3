@@ -1,0 +1,103 @@
+---
+- name: Create dynamic inventory
+  hosts: localhost
+  tasks:
+#Nginx
+    - name: Get ip for NGINX/loadbalancer
+      shell: ./openstack_inventory.py --host NGINX/loadbalancer
+      register: result
+    - set_fact:
+        myvar: "{{ result.stdout | from_json }}"     
+    - local_action: copy content='[nginx]\nNginx ansible_host={{myvar.private_v4}}' dest="./vars-etc/inventory.yml"
+
+#Webserver1
+    - name: Get ip for Webserver1
+      shell: ./openstack_inventory.py --host Webserver1
+      register: result
+    - set_fact:
+        myvar: "{{ result.stdout | from_json }}"
+    - lineinfile:
+        path: ./vars-etc/inventory.yml 
+        line: "\n[webservers]"
+        insertbefore: EOF
+    - lineinfile: 
+        path: ./vars-etc/inventory.yml 
+        line: Webserver1 ansible_host={{myvar.private_v4}}
+        insertbefore: EOF
+    
+#Webserver2
+    - name: Get ip for Webserver2
+      shell: ./openstack_inventory.py --host Webserver2
+      register: result
+    - set_fact:
+        myvar: "{{ result.stdout | from_json }}"
+    - lineinfile: 
+        path: ./vars-etc/inventory.yml 
+        line: Webserver2 ansible_host={{myvar.private_v4}}
+        insertbefore: EOF
+
+#Webserver3
+    - name: Get ip for Webserver3
+      shell: ./openstack_inventory.py --host Webserver3
+      register: result
+    - set_fact:
+        myvar: "{{ result.stdout | from_json }}"
+    - lineinfile: 
+        path: ./vars-etc/inventory.yml 
+        line: Webserver3 ansible_host={{myvar.private_v4}}
+        insertbefore: EOF
+
+#DB_master
+    - name: Get ip for DB_master
+      shell: ./openstack_inventory.py --host DB_master
+      register: result
+    - set_fact:
+        myvar: "{{ result.stdout | from_json }}" 
+    - lineinfile: 
+        path: ./vars-etc/inventory.yml 
+        line: "\n[databases]"
+        insertbefore: EOF
+    - lineinfile: 
+        path: ./vars-etc/inventory.yml 
+        line: DB_master ansible_host={{myvar.private_v4}}
+        insertbefore: EOF
+#DB_slave
+    - name: Get ip for DB_slave
+      shell: ./openstack_inventory.py --host DB_slave
+      register: result
+    - set_fact:
+        myvar: "{{ result.stdout | from_json }}" 
+    - lineinfile: 
+        path: ./vars-etc/inventory.yml 
+        line: DB_slave ansible_host={{myvar.private_v4}}
+        insertbefore: EOF
+
+#Monitoring    
+    - name: Get ip for monitoring
+      shell: ./openstack_inventory.py --host monitoring
+      register: result
+    - set_fact:
+        myvar: "{{ result.stdout | from_json }}" 
+    - lineinfile: 
+        path: ./vars-etc/inventory.yml 
+        line: "\n[monitoring]"
+        insertbefore: EOF
+    - lineinfile: 
+        path: ./vars-etc/inventory.yml 
+        line: Monitoring ansible_host={{myvar.private_v4}}
+        insertbefore: EOF
+
+#File_server
+    - name: Get ip for File server
+      shell: ./openstack_inventory.py --host File_server
+      register: result
+    - set_fact:
+        myvar: "{{ result.stdout | from_json }}" 
+    - lineinfile: 
+        path: ./vars-etc/inventory.yml 
+        line: "\n[file_servers]"
+        insertbefore: EOF
+    - lineinfile: 
+        path: ./vars-etc/inventory.yml 
+        line: File_server ansible_host={{myvar.private_v4}}
+        insertbefore: EOF

@@ -11,13 +11,17 @@
 # Date: 2020-10-05
 
 
-
-sudo apt update
-sudo apt -qy upgrade
+echo "Update apt-cache"
+sudo apt update > /dev/null 2/&1
+echo "Upgrade system"
+sudo apt -qy upgrade > /dev/null 2/&1
+echo "Install various packages(ssh, python3 etc)"
 sudo apt -y install aptitude build-essential git ntp ntpdate \
-openssh-server python-dev python3-pip sudo
-sudo apt -y install ansible
-
-ansible-galaxy collection install openstack.cloud
-ansible-galaxy collection install nginxinc.nginx_core
-pip3 install openstacksdk
+openssh-server python-dev python3-pip > /dev/null 2/&1
+echo "Install ansible"
+sudo apt -y install ansible > /dev/null 2/&1
+echo "Install ansible-galaxy"
+ansible-galaxy collection install openstack.cloud > /dev/null 2/&1
+ansible-galaxy collection install nginxinc.nginx_core > /dev/null 2/&1
+echo "install openstacksdk"
+pip3 install openstacksdk > /dev/null 2/&1
