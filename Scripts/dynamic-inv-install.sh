@@ -2,6 +2,7 @@ echo "downloading dynamic_inventory.py"
 wget https://raw.githubusercontent.com/ansible/ansible/stable-2.7/contrib/inventory/openstack_inventory.py
 chmod +775 openstack_inventory.py
 sed -i 's/python/python3.8/' openstack_inventory.py
+mv openstack_inventory.py ../Playbooks
 
 #OBS: för att skriptet ska funka måste clouds.yaml finnas på server i lämplig sökväg.
 
