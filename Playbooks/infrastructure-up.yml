@@ -119,7 +119,7 @@
       availability_zone: Education
       key_name: "{{ key_name }}"
       network: "{{ network }}"
-      auto_ip: false
+      auto_ip: true
       flavor_ram: 1024
       security_groups:
          - SSH
