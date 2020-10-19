@@ -1,0 +1,11 @@
+---
+- hosts: ansible
+
+  task:
+  - name: Copy file with owner and permissions
+    copy:
+      src: ../Playbooks/
+      dest: ~/Playbooks/
+      owner: ubuntu
+      group: ubuntu
+      mode: '0644'
