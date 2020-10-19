@@ -1,0 +1,47 @@
+---
+- name: Configure MySQL master
+  become: yes
+  hosts: DB_slave
+  tasks:
+    - name: Configure bind-address
+      lineinfile:
+        path: /etc/mysql/mysql.conf.d/mysqld.cnf
+        regexp: '^bind-address'
+        line: 'bind-address  = {{ hostvars.DB_slave.ansible_host }}'
+        backrefs: yes
+
+    - name: Configure server-id
+      lineinfile:
+        path: /etc/mysql/mysql.conf.d/mysqld.cnf
+        insertafter: EOF
+        line: 'server-id   =2'
+
+    - name: Add binlog_do_db
+      lineinfile:
+        path: /etc/mysql/mysql.conf.d/mysqld.cnf
+        insertafter: EOF
+        line: binlog_do_db = acmedb
+
+    - name: Add log-configuration
+      lineinfile:
+        path: /etc/mysql/mysql.conf.d/mysqld.cnf
+        insertafter: EOF
+        line: 'log_bin = /var/log/mysql/mysql-bin.log'
+
+    - name: Add log-configuration
+      lineinfile:
+        path: /etc/mysql/mysql.conf.d/mysqld.cnf
+        insertafter: EOF
+        line: 'log_bin_index =/var/log/mysql/mysql-bin.log.index'
+
+    - name: Add log-configuration
+      lineinfile:
+        path: /etc/mysql/mysql.conf.d/mysqld.cnf
+        insertafter: EOF
+        line: 'relay_log = /var/log/mysql/mysql-relay-bin'
+
+    - name: Add log-configuration
+      lineinfile:
+        path: /etc/mysql/mysql.conf.d/mysqld.cnf
+        insertafter: EOF
+        line: 'relay_log_index = /var/log/mysql/mysql-relay-bin.index'

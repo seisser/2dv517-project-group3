@@ -1,8 +1,10 @@
 ---
-- name: Maria DB
+- name: MySQL
   become: yes
   remote_user: ubuntu
-  hosts: 192.168.0.12
+  hosts: databases
   tasks:
-    - name: Install MySQL
-      package: name=mysql-server update_cache=yes state=latest
+    - name: Install MySQL server
+      package: name=mysql-server update_cache=yes state=latesudio
+    - name: Install MySQL client
+      package: name=mysql-client state=latest
