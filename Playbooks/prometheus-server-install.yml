@@ -1,0 +1,54 @@
+---
+- hosts: monitoring
+  become: yes
+  roles:
+    - cloudalchemy.prometheus
+  vars:
+    prometheus_web_listen_address: "0.0.0.0:9090"
+    prometheus_targets:
+      node:
+        - targets:
+            - '{{ hostvars.Webserver1.ansible_host }}:9100'
+            - '{{ hostvars.Webserver2.ansible_host }}:9100'
+            - '{{ hostvars.Webserver3.ansible_host }}:9100'
+          labels:
+            env: webservers
+        - targets:
+            - '{{ hostvars.DB_master.ansible_host }}:9100'
+            - '{{ hostvars.DB_slave.ansible_host }}:9100'
+          labels:
+            env: DB
+        - targets:
+            - '{{ hostvars.Nginx.ansible_host }}:9100'
+          labels:
+            env: NGINX
+        - targets:
+            - '{{ hostvars.File_server.ansible_host }}:9100'
+          labels:
+            env: File_server
+
+
+- hosts: all:!monitoring
+  become: yes
+  roles:
+    - role: undergreen.prometheus-node-exporter
+      prometheus_node_exporter_version: 0.18.1
+      prometheus_node_exporter_enabled_collectors:
+        - conntrack
+        - cpu
+        - diskstats
+        - entropy
+        - filefd
+        - filesystem
+        - loadavg
+        - mdadm
+        - meminfo
+        - netdev
+        - netstat
+        - stat
+        - textfile
+        - time
+        - vmstat
+      prometheus_node_exporter_config_flags:
+        'web.listen-address': '0.0.0.0:9100'
+        'log.level': 'info'
