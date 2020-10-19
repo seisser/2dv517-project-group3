@@ -20,3 +20,7 @@
             name: "{{ networkname }}"
             state: absent
 
+        - name: Delete security group
+          os_security_group:
+            name: SSH
+            state: absent
