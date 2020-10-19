@@ -1,0 +1,44 @@
+---
+- name: Delete OpenStack instances
+  hosts: localhost
+
+  tasks:
+  - name: Delete Webserver1
+    os_server:
+      name: Webserver1
+      state: absent
+      
+  - name: Delete Webserver2
+    os_server:
+      name: Webserver2
+      state: absent
+      
+  - name: Delete Webserver3
+    os_server:
+      name: Webserver3
+      state: absent
+      
+  - name: Delete NGINX/loadbalancer
+    os_server:
+      name: NGINX/loadbalancer
+      state: absent
+      
+  - name: Delete File_server
+    os_server:
+      name: File_server
+      state: absent
+      
+  - name: Delete DB_master
+    os_server:
+      name: DB_master
+      state: absent
+      
+  - name: Delete DB_slave
+    os_server:
+      name: DB_slave
+      state: absent                                
+
+  - name: Delete monitoring server
+    os_server:
+      name: Monitoring
+      state: absent
