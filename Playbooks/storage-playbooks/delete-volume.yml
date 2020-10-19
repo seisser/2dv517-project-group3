@@ -1,0 +1,10 @@
+---
+- name: Persistent storage
+  hosts: localhost
+  
+  tasks:
+  - name: Deleting 10gb volume
+    os_volume:
+      display_name: File_storage
+      availability_zone: nova
+      state: absent
