@@ -1,0 +1,28 @@
+---
+- name: Create mount-point
+  hosts: localhost
+  
+  tasks:
+    - name: Create /tmp/vol
+      file:
+        path: /tmp/vol
+        state: directory
+
+    - name: Chown /tmp/vol to ubuntu
+      file:
+        path: /tmp/vol
+        owner: ubuntu
+
+    - name: Attaching volume to ansible to create ext4 FS on it
+      os_server_volume:
+        state: present
+        server: Ansibleserver1
+        volume: File_storage
+        device: /dev/sdb
+
+    - name: create ext4 filesystem on /dev/sdb
+      community.general.filesystem:
+        fstype: ext4
+        dev: /dev/sdb
+
+

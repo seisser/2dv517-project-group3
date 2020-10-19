@@ -1,0 +1,18 @@
+---
+- name: Detach volume
+  hosts: localhost
+
+  tasks:
+    - name: umount volumei
+      become: true      
+      mount:
+        path: /tmp/vol
+        src: /dev/sdb
+        state: unmounted
+
+    - name: Detaching volume from Ansibleserver1
+      os_server_volume:
+        server: Ansibleserver1
+        volume: File_storage
+        state: absent
+

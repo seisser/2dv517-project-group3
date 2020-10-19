@@ -1,0 +1,12 @@
+---
+- name: Persistent storage
+  hosts: localhost
+  
+  tasks:
+  - name: Creating 10gb volume
+    os_volume:
+      display_name: File_storage
+      size: 10
+      availability_zone: nova
+      display_description: persistent storage for various files(playbooks etc) and database backups 
+      state: present
