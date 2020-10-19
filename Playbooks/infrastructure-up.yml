@@ -15,7 +15,7 @@
       key_name: "{{ key_name }}"
       network: "{{ network }}"
       auto_ip: false
-      flavor_ram: 1024
+      flavor: c2-r4-d10
       security_groups:
          - SSH
          - default      
@@ -30,7 +30,7 @@
       key_name: "{{ key_name }}"
       network: "{{ network }}"
       auto_ip: false
-      flavor_ram: 1024
+      flavor: c2-r4-d10
       security_groups:
          - SSH
          - default      
@@ -45,7 +45,7 @@
       key_name: "{{ key_name }}"
       network: "{{ network }}"
       auto_ip: false
-      flavor_ram: 1024
+      flavor: c2-r4-d10
       security_groups:
          - SSH
          - default      
@@ -60,7 +60,7 @@
       key_name: "{{ key_name }}"
       network: "{{ network }}"
       auto_ip: true
-      flavor_ram: 1024
+      flavor: c2-r4-d10
       security_groups:
          - SSH
          - default      
@@ -75,7 +75,7 @@
       key_name: "{{ key_name }}"
       network: "{{ network }}"
       auto_ip: false
-      flavor_ram: 1024
+      flavor: c2-r4-d10
       security_groups:
          - SSH
          - default
@@ -90,7 +90,7 @@
       key_name: "{{ key_name }}"
       network: "{{ network }}"
       auto_ip: false
-      flavor_ram: 1024
+      flavor: c2-r4-d10
       security_groups:
          - SSH
          - default      
@@ -105,7 +105,7 @@
       key_name: "{{ key_name }}"
       network: "{{ network }}"
       auto_ip: false
-      flavor_ram: 1024
+      flavor: c2-r4-d10
       security_groups:
          - SSH
          - default
@@ -120,7 +120,7 @@
       key_name: "{{ key_name }}"
       network: "{{ network }}"
       auto_ip: false
-      flavor_ram: 1024
+      flavor: c2-r4-d10
       security_groups:
          - SSH
          - default           
