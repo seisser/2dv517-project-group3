@@ -2,16 +2,20 @@
 
 Group project in 2dv517....
 
-
-0. Add "- ./vars-etc/private-vars.yml" to the ansible-instance-up.yaml, otherwise it won't find the keyname.
 1. Set your ssh-key name in vars-etc/private-vars.yml (no pathing or .pem in the end, only the name)
-2. Set your ssh-key path in ansible.cfg (use path and .pem in the end, since this is full pathing)
-3. Run network-up.yml and ansible-instance-up.yml.
-4. SSH in to the Ansible instance
-5. Run securitygroups-up.yml and infrastructure-up.yml
-6. Create .config/openstack (mkdir -p .config/openstack)
-7. Copy clouds.yaml to /home/ubuntu/.config/openstack/ (~/.config/openstack)
-8. Copy ssh-key to /home/ubuntu/.ssh/ (~/.ssh)
-9. Run Scripts/install-ansible.sh
-10. Run Scripts/dynamic-inv-script-install.sh
-11. Run Playbooks/initialize-inventory.yaml
+2. Set your ssh-key path in ansible.cfg (use path and .pem in the end, since this is full pathing)  
+
+3. Set variables in:
+4. vars-etc/ansible-setup-vars.yml (the ansible_server_ip should be the floating ip that openstack gives the first server created*)
+5. also add the floating-ip which will be used for Ansibleserver1, in the vars-etc/inventory.yml**
+6. Run ansible-instance-up.yml  
+
+7. ssh into the server
+8. You will again have to update according to points 1 and 2 on the Ansibleserver1. 3 to 6 are only for the setup, from our own computers, of the Ansibleserver1.
+9. create the rest of the servers
+10. Run Playbooks/initialize-inventory.yaml
+
+
+*When creating a new server, it seems as if openstack always uses the same floatingip first  
+We need to use this ip for setting up the Ansibleserver1, since the inventory script is too buggy if not used from the Ansibleserver1. And in order to copy over various files we need an ip to copy to.  
+**delete everything in the inventory and only add the floating ip for Ansibleserver1
