@@ -2,13 +2,21 @@
 - name: Create dynamic inventory
   hosts: localhost
   tasks:
+#Ansible    
+    - name: Get ip for Ansible
+      shell: ./openstack_inventory.py --host Ansibleserver1
+      register: result
+    - set_fact:
+        myvar: "{{ result.stdout | from_json }}"     
+    - local_action: copy content='[ansible]\nAnsibleserver1 ansible_host={{myvar.private_v4}}' dest="./vars-etc/inventory.yml"
+
 #Nginx
     - name: Get ip for NGINX/loadbalancer
       shell: ./openstack_inventory.py --host NGINX/loadbalancer
       register: result
     - set_fact:
         myvar: "{{ result.stdout | from_json }}"     
-    - local_action: copy content='[nginx]\nNginx ansible_host={{myvar.private_v4}}' dest="./vars-etc/inventory.yml"
+    - local_action: copy content='\n[nginx]\nNginx ansible_host={{myvar.private_v4}}' dest="./vars-etc/inventory.yml"
 
 #Webserver1
     - name: Get ip for Webserver1
