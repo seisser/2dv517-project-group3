@@ -1,0 +1,19 @@
+---
+- name: Create OpenStack instances
+  hosts: localhost
+  vars_files:
+    - ./vars-etc/ansible-setup-vars.yml
+
+  tasks:
+    - name: Add server to known hosts
+      shell: ssh-keyscan -H "{{ ansible_server_ip }}" >> ~/.ssh/known_hosts
+
+    - name: Copy ssh-key to the ansible host
+      shell: scp -i "{{ key_path }}" "{{ key_path }}" ubuntu@"{{ ansible_server_ip }}":/home/ubuntu/.ssh
+
+    - name: Copy clouds.yaml to the ansible host
+      shell: scp -i "{{ key_path }}" "{{ cloud_yaml_path }}" ubuntu@"{{ ansible_server_ip }}":/home/ubuntu
+
+    - name: Copy project-files to Ansibleserver1
+      shell: scp -i "{{ key_path }}" "{{ project_tar_path }}" ubuntu@"{{ ansible_server_ip }}":/home/ubuntu
+

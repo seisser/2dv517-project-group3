@@ -1,0 +1,55 @@
+---
+- name: Setting up ansible
+  hosts: "{{ ansible_server_ip }}"
+  remote_user: ubuntu
+  become: true
+  vars_files:
+    - ./vars-etc/ansible-setup-vars.yml
+  tasks:
+    - name: Install packages for Ansible
+      package: name={{ ansible }} update_cache=yes state=latest
+
+    - name: Install ansible galaxy openstack.cloud
+      shell: ansible-galaxy collection install openstack.cloud
+
+    - name: Install ansible galaxy nginxinc.nginx_core
+      shell: ansible-galaxy collection install nginxinc.nginx_core
+
+    - name: Install ansible galaxy community.general
+      shell: ansible-galaxy collection install community.general
+
+    - name: Install ansible galaxy prometheus-node-exporter
+      shell: ansible-galaxy install undergreen.prometheus-node-exporter
+
+    - name: Install ansible galaxy cloudalchemy.prometheus
+      shell: ansible-galaxy install cloudalchemy.prometheus
+
+    - name: Install ansible galaxy cloudalchemy.grafana
+      shell: ansible-galaxy install cloudalchemy.grafana
+
+    - name: Install openstacksdk
+      pip:
+        name: openstacksdk
+
+    - name: Extract project.tar.gz into /home/ubuntu
+      unarchive:
+        src: /home/ubuntu/project.tar.gz
+        dest: /home/ubuntu
+        remote_src: yes
+
+    - name: Create ~/.config
+      file:
+        path: /home/ubuntu/.config
+        state: directory
+
+    - name: Create ~/.config/openstack
+      file:
+        path: /home/ubuntu/.config/openstack
+        state: directory
+
+    - name: Copy clouds.yaml to ~/.config/openstack
+      copy:
+        src: /home/ubuntu/clouds.yaml
+        dest: /home/ubuntu/.config/openstack
+        remote_src: yes
+        

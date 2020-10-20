@@ -20,6 +20,18 @@
         security_groups:
           - SSH
           - default
+    
+    - name: Pause for 40 secs to allow Ansibleserver1 to complete its startup
+      pause:
+        seconds: 40
+
+- name: Copy ssh-key and clouds.yaml to Ansibleserver1
+  import_playbook: copy-files-to-ansible.yml
+
+- name: Install all necessary programs and ansible modules on Ansibleserver1
+  import_playbook: ansible-setup.yml
+
+
 
 #    ToDo: Create a snapshot of the clean Ansible server
 #    ToDo: Maybe transfer automatic the Script to the new server.
