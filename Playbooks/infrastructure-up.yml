@@ -63,7 +63,8 @@
       flavor: c2-r4-d10
       security_groups:
          - SSH
-         - default      
+         - default  
+         - Loadbalancer 
       
   - name: "{{ setupfile }}"
     os_server:
@@ -123,4 +124,5 @@
       flavor: c2-r4-d10
       security_groups:
          - SSH
-         - default           
+         - default 
+         - Monitoring         
