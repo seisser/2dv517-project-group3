@@ -120,7 +120,7 @@
       availability_zone: Education
       key_name: "{{ key_name }}"
       network: "{{ network }}"
-      auto_ip: false
+      auto_ip: true
       flavor: c2-r4-d10
       security_groups:
          - SSH

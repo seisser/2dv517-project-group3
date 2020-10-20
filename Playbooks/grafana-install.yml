@@ -1,0 +1,24 @@
+---
+- hosts: monitoring
+  roles:
+    - role: cloudalchemy.grafana
+
+
+  vars_files:
+    - ./vars-etc/private-vars.yml
+      vars:
+        grafana_security:
+            admin_user: "{{ grafanauser }}"
+            admin_password: "{{ grafanapsw }}"
+
+        grafana_datasources:
+          - name: prometheus
+            type: prometheus
+            access: proxy
+            url: 'http://localhost:9090'
+            basicAuth: false
+
+        grafana_dashboards:
+          - dashboard_id: 1860
+            revision_id: 21
+            datasource: prometheus

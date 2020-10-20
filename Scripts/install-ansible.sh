@@ -25,3 +25,7 @@ ansible-galaxy collection install openstack.cloud > /dev/null 2>&1
 ansible-galaxy collection install nginxinc.nginx_core > /dev/null 2>&1
 echo "install openstacksdk"
 pip3 install openstacksdk > /dev/null 2>&1
+echo "install prometheus and grafana"
+ansible-galaxy install undergreen.prometheus-node-exporter
+ansible-galaxy install cloudalchemy.prometheus
+ansible-galaxy install cloudalchemy.grafana
