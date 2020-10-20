@@ -1,4 +1,7 @@
-[loadbalancer]
+[ansible]
+194.47.177.0
+
+  [loadbalancer]
 <IP NGINX/loadbalancer>
 [webservers]
 <IP Webserver1>

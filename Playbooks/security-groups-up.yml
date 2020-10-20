@@ -1,0 +1,31 @@
+---
+- name: Create Openstack Security Groups
+  hosts: localhost
+  tasks:
+  - name: Create Loadbalancer Security Group
+    os_security_group:
+      state: present
+      name: Loadbalancer
+      description: A security group for NGINX/loadbalancer
+            
+  - name: Add TCP rule for Loadbalancer Security Group
+    os_security_group_rule:
+      security_group: Loadbalancer
+      protocol: tcp
+      port_range_min: 80
+      port_range_max: 80
+      remote_ip_prefix: 0.0.0.0/0 
+
+  - name: Create Monitoring Security Group
+    os_security_group:
+      state: present
+      name: Monitoring
+      description: A security group for Monitoring
+            
+  - name: Add TCP rule for Monitoring Security Group
+    os_security_group_rule:
+      security_group: Monitoring
+      protocol: tcp
+      port_range_min: 3000
+      port_range_max: 3000
+      remote_ip_prefix: 0.0.0.0/0 

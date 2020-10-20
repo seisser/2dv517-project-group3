@@ -1,0 +1,14 @@
+---
+- name: Delete Openstack Security Groups
+  hosts: localhost
+  tasks:
+  - name: Delete Loadbalancer Security Group
+    os_security_group:
+      name: Loadbalancer
+      state: absent
+
+  - name: Delete Monitoring Security Group
+    os_security_group:
+      name: Monitoring
+      state: absent
+      

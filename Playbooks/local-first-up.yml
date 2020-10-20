@@ -7,5 +7,7 @@
 - name: Ansible Up
   import_playbook: ansible-instance-up.yml
 
+
 - name: Infrastructure Up
   import_playbook: infrastructure_up.yml
+
