@@ -5,11 +5,21 @@
 # Author: Renato Opazo Salgado
 
 slaveip=$1
+web1=$2
+web2=$3
+web3=$4
 
 sudo mysql --user=root <<_EOF_
         CREATE USER 'acme_user'@'$slaveip' IDENTIFIED BY '';
         GRANT REPLICATION SLAVE ON *.* TO 'acme_user'@'$slaveip';
-        ALTER USER 'root' IDENTIFIED WITH mysql_native_password BY 'root_password';
+        ALTER USER acme_user@$slaveip IDENTIFIED WITH mysql_native_password BY 'acme_password';
+        CREATE USER 'wp'@'$web1' IDENTIFIED BY 'acme_password';
+        CREATE USER 'wp'@'$web2' IDENTIFIED BY 'acme_password';
+        CREATE USER 'wp'@'$web3' IDENTIFIED BY 'acme_password';
+        GRANT ALL PRIVILEGES ON *.* TO 'wp'@'$web1' IDENTIFIED BY 'acme_password';
+        GRANT ALL PRIVILEGES ON *.* TO 'wp'@'$web2' IDENTIFIED BY 'acme_password';
+        GRANT ALL PRIVILEGES ON *.* TO 'wp'@'$web3' IDENTIFIED BY 'acme_password';
+        FLUSH PRIVILEGES;
         CREATE DATABASE acmedb;
 _EOF_
 
