@@ -15,9 +15,12 @@ Group project in 2dv517....
 9. Run Playbooks/infrastructure-up.yml
 10. Run Playbooks/initialize-inventory.yml
 
-For  db:
+For db:
+
 11. Run Playbooks/roles/db.yml
+
 12. Run Playbooks/roles/db-master.yml
+
 13. Run Playbooks/roles/db-slave.yml
 
 *To test if this work: ssh into Ansibleserver1 and from there ssh into DB_master then:
