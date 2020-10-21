@@ -1,5 +1,5 @@
-ansible_server_ip: 194.47.177.13
-key_path: /home/anton/.ssh/aw222zr-2dv517.pem
-cloud_yaml_path: /home/anton/.config/openstack/clouds.yaml
-project_tar_path: /home/anton/Skola/2dv517-project-group3/project.tar.gz
+ansible_server_ip: 194.47.177.17
+key_path: /home/linus/.ssh/acme_key.pem
+cloud_yaml_path: /home/linus/.config/openstack/clouds.yaml
+project_tar_path: /home/linus/LNU/2dv517/project.tar.gz
 ansible: [aptitude, build-essential, git, ntp, ntpdate, openssh-server, python-dev, python3-pip, ansible, python-setuptools]

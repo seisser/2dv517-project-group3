@@ -2,7 +2,7 @@
 - name: Configure MySQL master
   become: yes
   hosts: DB_slave
-  vars-files:
+  vars_files:
     - ./vars-etc/masterstatus.yml
   tasks:
     - name: Configure bind-address

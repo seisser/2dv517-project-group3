@@ -16,9 +16,9 @@ sudo mysql --user=root <<_EOF_
         CREATE USER 'wp'@'$web1' IDENTIFIED BY 'acme_password';
         CREATE USER 'wp'@'$web2' IDENTIFIED BY 'acme_password';
         CREATE USER 'wp'@'$web3' IDENTIFIED BY 'acme_password';
-        GRANT ALL PRIVILEGES ON *.* TO 'wp'@'$web1' IDENTIFIED BY 'acme_password';
-        GRANT ALL PRIVILEGES ON *.* TO 'wp'@'$web2' IDENTIFIED BY 'acme_password';
-        GRANT ALL PRIVILEGES ON *.* TO 'wp'@'$web3' IDENTIFIED BY 'acme_password';
+        GRANT ALL PRIVILEGES ON *.* TO 'wp'@'$web1';
+        GRANT ALL PRIVILEGES ON *.* TO 'wp'@'$web2';
+        GRANT ALL PRIVILEGES ON *.* TO 'wp'@'$web3';
         FLUSH PRIVILEGES;
         CREATE DATABASE acmedb;
 _EOF_
