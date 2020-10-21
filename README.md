@@ -12,8 +12,18 @@ Group project in 2dv517....
 
 7. ssh into the server
 8. You will again have to update according to points 1 and 2 on the Ansibleserver1. 3 to 6 are only for the setup, from our own computers, of the Ansibleserver1.
-9. create the rest of the servers
-10. Run Playbooks/initialize-inventory.yaml
+9. Run Playbooks/infrastructure-up.yml
+10. Run Playbooks/initialize-inventory.yml
+
+For  db:
+11. Run Playbooks/roles/db.yml
+12. Run Playbooks/roles/db-master.yml
+13. Run Playbooks/roles/db-slave.yml
+
+*To test if this work: ssh into Ansibleserver1 and from there ssh into DB_master then:
+ Type "sudo mysql -u root"  and press enter, then type: "CREATE DATABASE acmedb;" and press enter, then type "SHOW DATABASES;" and press enter, you should now see acmedb in that list.
+Now exit (go back to Ansibleserver1) and ssh into DB_slave then:
+Type "sudo mysql -u root" and press enter, then type: "SHOW DATABASES;" and press enter, if you see acmedb in that list the replication works!
 
 
 *When creating a new server, it seems as if openstack always uses the same floatingip first  
