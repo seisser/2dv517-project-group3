@@ -1,9 +1,5 @@
 #! /bin/bash
 
-# This is a script will create a new Database with user.
-#
-# Author: Renato Opazo Salgado
-
 slaveip=$1
 web1=$2
 web2=$3
