@@ -4,6 +4,7 @@
   hosts: DB_slave
   vars_files:
     - ../vars-etc/masterstatus.yml
+
   tasks:
     - name: Configure bind-address
       lineinfile:

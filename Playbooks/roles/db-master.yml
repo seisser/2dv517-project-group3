@@ -58,6 +58,7 @@
   tasks:
     - name: Copy variable file from DB_master
       shell: scp -i ~/.ssh/acme-key.pem ubuntu@{{ hostvars.DB_master.ansible_host }}:~/masterstatus.yml ~/Playbooks/vars-etc/
+
    
       #Below might be wrong. Maybe we need a different IP for the servers to work. I think maybe Nginx somehow
     - name: Sed to set correct Master_db ip to backup.sql

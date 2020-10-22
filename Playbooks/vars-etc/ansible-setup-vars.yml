@@ -1,3 +1,4 @@
+
 ansible_server_ip: 194.47.177.13
 key_path: /home/anton/.ssh/acme-key.pem
 cloud_yaml_path: /home/anton/.config/openstack/clouds.yaml
