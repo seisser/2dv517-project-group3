@@ -1,9 +1,5 @@
 #! /bin/bash
 
-# This is a script will create a new Database with user.
-#
-# Author: Renato Opazo Salgado, Anton, Linus
-
 masterip=$1
 mlogfile=$2
 mlogpos=$3

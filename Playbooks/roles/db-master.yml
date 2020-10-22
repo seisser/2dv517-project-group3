@@ -57,5 +57,5 @@
 - hosts: localhost
   tasks:
     - name: Copy variable file from DB_master
-      shell: scp -i ~/.ssh/2dv517-lm222qm.pem ubuntu@{{ hostvars.DB_master.ansible_host }}:~/masterstatus.yml ~/Playbooks/vars-etc/
+      shell: scp -i ~/.ssh/acme-key.pem ubuntu@{{ hostvars.DB_master.ansible_host }}:~/masterstatus.yml ~/Playbooks/vars-etc/
 
