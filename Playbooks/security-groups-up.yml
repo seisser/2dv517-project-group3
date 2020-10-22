@@ -29,3 +29,17 @@
       port_range_min: 3000
       port_range_max: 3000
       remote_ip_prefix: 0.0.0.0/0 
+
+  - name: Create Webserver Security Group
+    os_security_group:
+      state: present
+      name: Webserver
+      description: A security group for NGINX/loadbalancer
+
+  - name: Add TCP rule for webserver
+    os_security_group_rule:
+      security_group: Webserver
+      protocol: tcp
+      port_range_min: 80
+      port_range_max: 80
+      remote_ip_prefix: 0.0.0.0/0 

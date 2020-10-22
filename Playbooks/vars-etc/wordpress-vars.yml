@@ -9,8 +9,7 @@ config: "localhost.conf"
 apache_port: "80"
 
 #Mysql configuration
-db_name: "wordpress"
-db_user: "root"
-db_password: "test"
-db_host: "localhost"
+db_name: acmedb
+db_user: wp
+db_password: acme_password
 

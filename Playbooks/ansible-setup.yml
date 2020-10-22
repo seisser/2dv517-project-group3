@@ -27,6 +27,9 @@
     - name: Install ansible galaxy cloudalchemy.grafana
       shell: ansible-galaxy install cloudalchemy.grafana
 
+    - name: Install ansible galaxy cloudalchemy.grafana
+      shell: ansible-galaxy collection install community.mysql
+
     - name: Install openstacksdk
       pip:
         name: openstacksdk
