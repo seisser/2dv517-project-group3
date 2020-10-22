@@ -1,8 +1,26 @@
 ---
+- name: Copy acme-site.tar.gz
+  remote_user: ubuntu
+  become: true
+  hosts: localhost
+  tasks:
+    - name:  Transfer acme_site.tar.gz to Webserver1
+      shell: ssh-keyscan -H "{{ hostvars.Webserver1.ansible_host }}" >> ~/.ssh/known_hosts
+    - name: Transfer tar.gz to Webserver
+      shell: scp -i /home/ubuntu/.ssh/acme-key.pem /home/ubuntu/acme_site.tar.gz ubuntu@"{{hostvars.Webserver1.ansible_host}}":/home/ubuntu
+    - name:  Transfer acme_site.tar.gz to Webserver2
+      shell: ssh-keyscan -H "{{ hostvars.Webserver2.ansible_host }}" >> ~/.ssh/known_hosts
+    - name: Transfer tar.gz to Webserver
+      shell: scp -i /home/ubuntu/.ssh/acme-key.pem /home/ubuntu/acme_site.tar.gz ubuntu@"{{hostvars.Webserver2.ansible_host}}":/home/ubuntu
+    - name: Transfer acme_site.tar.gz to Webserver3
+      shell: ssh-keyscan -H "{{ hostvars.Webserver3.ansible_host }}" >> ~/.ssh/known_hosts
+    - name: Transfer tar.gz to Webserver
+      shell: scp -i /home/ubuntu/.ssh/acme-key.pem /home/ubuntu/acme_site.tar.gz ubuntu@"{{hostvars.Webserver3.ansible_host}}":/home/ubuntu
+
 - name: Setting up infrastructure for, and installing/configuring, Wordpress
   remote_user: ubuntu
   become: true
-  hosts: 192.168.0.5
+  hosts: Webserver1:Webserver2:Webserver3
   vars_files:
     - ../vars-etc/wordpress-vars.yml
   tasks:
@@ -27,10 +45,37 @@
 
     - name: install wordpress(transfer wordpress files)
       unarchive:
-        src: /home/ubuntu/ansible/acme-site.tar.gz
-        dest: "/var/www/html"
+        src: /home/ubuntu/acme_site.tar.gz
+        dest: /var/www/html
+        remote_src: yes
+
+    - name: Set dbname in wp-config.php
+      replace:
+        path: /var/www/html/wp-config.php
+        regexp: '\b(\w*db-name-replace\w*)\b'
+        replace: '{{ db_name }}'
+
+    - name: Set db user in wp-config
+      replace:
+        path:  /var/www/html/wp-config.php
+        regexp: '\b(\w*db-user-replace\w*)\b'
+        replace: '{{ db_user }}'
+    
+    - name: Set db user password in wp-config
+      replace:
+        path:  /var/www/html/wp-config.php
+        regexp: '\b(\w*db-pw-replace\w*)\b'
+        replace: '{{ db_password }}'
+    
+    - name: Set host ip in wp-config
+      replace:
+        path:  /var/www/html/wp-config.php
+        regexp: '\b(\w*db-host-replace\w*)\b'
+        replace: '{{hostvars.DB_master.ansible_host}}'
 
     - name: reload apache2
       systemd:
         name: apache2
         state: reloaded
+
+

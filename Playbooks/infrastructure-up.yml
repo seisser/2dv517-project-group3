@@ -19,7 +19,8 @@
       security_groups:
          - SSH
          - default      
-      
+         - Webserver
+
   - name: "{{ setupweb }} 2"
     os_server:
       name: Webserver2
@@ -33,7 +34,8 @@
       flavor: c2-r4-d10
       security_groups:
          - SSH
-         - default      
+         - default  
+         - Webserver    
       
   - name: "{{ setupweb }} 3"
     os_server:
@@ -49,6 +51,7 @@
       security_groups:
          - SSH
          - default      
+         - Webserver
       
   - name: "{{ setupnginx }}"
     os_server:
