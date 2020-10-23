@@ -1,0 +1,16 @@
+---
+- hosts: localhost
+
+- name:
+  import_playbook: infrastructure-down.yml
+
+- name:
+  import_playbook: ansible-instance-down.yml
+
+- name:
+  import_playbook: network-down.yml
+
+- name:
+  import_playbook: security-groups-down.yml
+
+

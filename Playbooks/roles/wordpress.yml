@@ -73,6 +73,12 @@
         regexp: '\b(\w*db-host-replace\w*)\b'
         replace: '{{hostvars.DB_master.ansible_host}}'
 
+    - name: Set access rights on /var/www/html
+      become: true
+      shell: chmod -R 775 /var/www/html
+      args:
+        warn: false
+
     - name: reload apache2
       systemd:
         name: apache2

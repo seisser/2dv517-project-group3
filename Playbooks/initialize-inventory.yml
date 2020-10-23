@@ -4,6 +4,11 @@
   tasks:
 
 #Ansible
+    - name: Remove old inventory.yml file
+      file:
+        path: "/home/ubuntu/Playbooks/vars-etc/inventory.yml"
+        state: absent
+
     - name: Create inventory.yml file
       file:
         path: "/home/ubuntu/Playbooks/vars-etc/inventory.yml"
@@ -34,7 +39,7 @@
         insertbefore: EOF
     - lineinfile:
         path: ./vars-etc/inventory.yml
-        line: Nginx ansible_host={{myvar.private_v4}}
+        line: Nginx ansible_host={{myvar.private_v4}} floating_ip={{myvar.public_v4}}
         insertbefore: EOF
 
 #Webserver1

@@ -1,0 +1,28 @@
+---
+- hosts: localhost
+
+- name:
+  import_playbook: roles/db.yml
+
+- name:
+  import_playbook: roles/db-master.yml
+
+- name:
+  import_playbook: roles/setup-acmedb.yml
+
+- name:
+  import_playbook: roles/db-slave.yml
+
+- name:
+  import_playbook: roles/wordpress.yml
+
+- name:
+  import_playbook: NGINX-install.yml
+
+- name:
+  import_playbook: prometheus-server-install.yml
+
+- name:
+  import_playbook: grafana-install.yml
+
+

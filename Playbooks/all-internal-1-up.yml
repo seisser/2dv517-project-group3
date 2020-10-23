@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+
+- name:
+  import_playbook: modules.yml
+
+- name:
+  import_playbook: infrastructure-up.yml
+
+- name:
+  import_playbook: initialize-inventory.yml
