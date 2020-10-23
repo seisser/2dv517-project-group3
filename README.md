@@ -34,17 +34,17 @@ Att göra om någon har lust:
 
 
 Manual setup:
-#Setup from external location:
-#1. Network - Playbooks/(network-up.yml)
-#2. Security Groups - Playbooks/(security-groups-up.yml)
-#3. Ansibleserver1 - Playbooks/(ansible-instance-up -> copy-files-to-ansible.yml -> ansible.setup.yml)
+0. Setup from external location:
+1. Network - Playbooks/(network-up.yml)
+2. Security Groups - Playbooks/(security-groups-up.yml)
+3. Ansibleserver1 - Playbooks/(ansible-instance-up -> copy-files-to-ansible.yml -> ansible.setup.yml)
 
-#Setup from internal location:
-#1. Instance Infrastructure - Playbooks(infrastructure-up.yml)
-#2. Install modules - Playbooks/(ansible-modules.yml)
-#3. Create dynamic inventory - Playbooks/(initialize-inventory.yml) 
-#4. Database replication - Playbooks/roles/(db.yml -> db-master.yml (-> dbmaster.sh) -> setup-acme-db.yml -> db-slave.yml (-> dbslave.sh))
-#5. Webservers - Playbooks/roles/(wordpress.yml)
-#6. Loadbalancing - Playbooks(NGINX-install.yml)
-#7. Monitoring - Playbooks/(prometheus-server-install.yml -> grafana-install.yml)
+0. Setup from internal location:
+1. Instance Infrastructure - Playbooks(infrastructure-up.yml)
+2. Install modules - Playbooks/(ansible-modules.yml)
+3. Create dynamic inventory - Playbooks/(initialize-inventory.yml) 
+4. Database replication - Playbooks/roles/(db.yml -> db-master.yml (-> dbmaster.sh) -> setup-acme-db.yml -> db-slave.yml (-> dbslave.sh))
+5. Webservers - Playbooks/roles/(wordpress.yml)
+6. Loadbalancing - Playbooks(NGINX-install.yml)
+7. Monitoring - Playbooks/(prometheus-server-install.yml -> grafana-install.yml)
 
