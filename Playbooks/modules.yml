@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+
+  tasks:
+  - name: Install ansible galaxy collection modules
+    shell: ansible-galaxy collection install openstack.cloud nginxinc.nginx_core community.general community.mysql
+
+  - name: Install ansible galaxy prometheus related modules
+    shell: ansible-galaxy install undergreen.prometheus-node-exporter cloudalchemy.prometheus cloudalchemy.grafana

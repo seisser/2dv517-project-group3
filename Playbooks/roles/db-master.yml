@@ -3,13 +3,6 @@
   become: yes
   hosts: DB_master
   tasks:
-    - name: Configure bind-address
-      lineinfile:
-        path: /etc/mysql/mysql.conf.d/mysqld.cnf
-        regexp: '^bind-address'
-        line: 'bind-address  = {{ hostvars.DB_master.ansible_host }}'
-        backrefs: yes
-
     - name: Configure server-id
       lineinfile:
         path: /etc/mysql/mysql.conf.d/mysqld.cnf
@@ -46,6 +39,12 @@
         insertafter: EOF
         line: 'relay_log_index = /var/log/mysql/mysql-relay-bin.index'
 
+    - name: Configure bind-address
+      lineinfile:
+        path: /etc/mysql/mysql.conf.d/mysqld.cnf
+        regexp: '^bind-address'
+        line: bind-address  = "{{ hostvars.DB_master.ansible_host }}"
+   
     - name: Restart mysql
       service:
         name: mysql
@@ -56,21 +55,18 @@
 
 - hosts: localhost
   tasks:
+    - name: Add server to known hosts
+      shell: ssh-keyscan -H "{{ hostvars.DB_master.ansible_host }}" >> ~/.ssh/known_hosts
+
     - name: Copy variable file from DB_master
       shell: scp -i ~/.ssh/acme-key.pem ubuntu@{{ hostvars.DB_master.ansible_host }}:~/masterstatus.yml ~/Playbooks/vars-etc/
    
       #Below might be wrong. Maybe we need a different IP for the servers to work. I think maybe Nginx somehow
     - name: Sed to set correct Master_db ip to backup.sql
-      shell: sed -i 's/set_new_ip/{{ hostvars.Webserver1.ansible_host}}/g' ../../backup.sql
+      shell: sed -i 's/set_new_ip/{{ hostvars.Nginx.floating_ip}}/g' ../../backup.sql
       args:
         warn: false
    
     - name: Copy database file to DB_master
       shell: scp -i ~/.ssh/acme-key.pem ../../backup.sql ubuntu@{{ hostvars.DB_master.ansible_host }}:;
-
-- hosts: DB_master
-  tasks:
-    - name: Import backup.sql to acmedb
-      become: true
-      shell: mysql -u root acmedb < /home/ubuntu/backup.sql
 

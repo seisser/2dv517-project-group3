@@ -9,30 +9,17 @@
     - name: Install packages for Ansible
       package: name={{ ansible }} update_cache=yes state=latest
 
-    - name: Install ansible galaxy openstack.cloud
+    - name: Install ansible openstack.cloud
       shell: ansible-galaxy collection install openstack.cloud
 
-    - name: Install ansible galaxy nginxinc.nginx_core
-      shell: ansible-galaxy collection install nginxinc.nginx_core
-
-    - name: Install ansible galaxy community.general
-      shell: ansible-galaxy collection install community.general
-
-    - name: Install ansible galaxy prometheus-node-exporter
-      shell: ansible-galaxy install undergreen.prometheus-node-exporter
-
-    - name: Install ansible galaxy cloudalchemy.prometheus
-      shell: ansible-galaxy install cloudalchemy.prometheus
-
-    - name: Install ansible galaxy cloudalchemy.grafana
-      shell: ansible-galaxy install cloudalchemy.grafana
-
-    - name: Install ansible galaxy cloudalchemy.grafana
-      shell: ansible-galaxy collection install community.mysql
-
     - name: Install openstacksdk
-      pip:
-        name: openstacksdk
+      become: true
+      command: pip3 install openstacksdk
+
+    - name: Remove old inventory
+      file:
+        path: /home/ubuntu/Playbooks/vars-etc/inventory.yml
+        state: absent
 
     - name: Extract project.tar.gz into /home/ubuntu
       unarchive:

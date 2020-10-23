@@ -1,0 +1,18 @@
+---
+- name: Dump backup.sql into acmedb
+  hosts: DB_master
+  become: true
+  tasks:
+
+    - name: Create database acmedb
+      shell: mysql -u root -e "CREATE DATABASE acmedb;"
+
+    - name: Create database clean_wp
+      shell: mysql -u root -e "CREATE DATABASE clean_wp;"
+
+    - name: Give database 10sec to prepare for import of backup.sql
+      shell: sleep 10 
+
+    - name: Import backup.sql to acmedb
+      become: true
+      shell: mysql -u root acmedb < /home/ubuntu/backup.sql

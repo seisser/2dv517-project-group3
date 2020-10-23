@@ -20,7 +20,6 @@ sudo mysql --user=root <<_EOF_
         GRANT ALL PRIVILEGES ON *.* TO 'wp'@'$web2';
         GRANT ALL PRIVILEGES ON *.* TO 'wp'@'$web3';
         FLUSH PRIVILEGES;
-        CREATE DATABASE acmedb;
 _EOF_
 
 sudo mysql -u root -e "SHOW MASTER STATUS\G" | grep 'File\|Position' | sed 's/^ *//' > masterstatus.yml

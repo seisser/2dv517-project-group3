@@ -128,4 +128,7 @@
       security_groups:
          - SSH
          - default 
-         - Monitoring         
+         - Monitoring
+
+
+
