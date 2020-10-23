@@ -44,11 +44,32 @@
         path: /etc/mysql/mysql.conf.d/mysqld.cnf
         regexp: '^bind-address'
         line: bind-address  = "{{ hostvars.DB_master.ansible_host }}"
-   
+ 
+    - name: Install python3-pip
+      package:
+        name: python3-pip
+        state: present
+
+    - name: Install openstacksdk pymysql
+      pip:
+        name:
+          - openstacksdk 
+          - pymysql
+
     - name: Restart mysql
       service:
         name: mysql
         state: restarted
+
+    - name: create ~/.config
+      file:
+        path: /home/ubuntu/.config
+        state: directory
+
+    - name: create ~/.config/openstack
+      file:
+        path: /home/ubuntu/.config/openstack
+        state: directory
 
     - name: Run configuration script DB_master
       script: ~/Scripts/dbmaster.sh {{ hostvars.DB_slave.ansible_host }} {{ hostvars.Webserver1.ansible_host }} {{ hostvars.Webserver2.ansible_host }} {{ hostvars.Webserver3.ansible_host }}
@@ -61,13 +82,15 @@
     - name: Copy variable file from DB_master
       shell: scp -i ~/.ssh/acme-key.pem ubuntu@{{ hostvars.DB_master.ansible_host }}:~/masterstatus.yml ~/Playbooks/vars-etc/
 
-   
-      #Below might be wrong. Maybe we need a different IP for the servers to work. I think maybe Nginx somehow
     - name: Sed to set correct Master_db ip to backup.sql
       shell: sed -i 's/set_new_ip/{{ hostvars.Nginx.floating_ip}}/g' ../../backup.sql
       args:
         warn: false
+
+    - name: Copy clouds.yaml to DB_master
+      shell: scp -i ~/.ssh/acme-key.pem ~/.config/openstack/clouds.yaml ubuntu@{{ hostvars.DB_master.ansible_host }}:;
    
     - name: Copy database file to DB_master
       shell: scp -i ~/.ssh/acme-key.pem ../../backup.sql ubuntu@{{ hostvars.DB_master.ansible_host }}:;
+
 

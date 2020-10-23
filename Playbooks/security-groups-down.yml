@@ -12,3 +12,8 @@
       name: Monitoring
       state: absent
       
+  - name: Delete Webserver Security Group
+    os_security_group:
+      name: Webserver
+      state: absent
+      
