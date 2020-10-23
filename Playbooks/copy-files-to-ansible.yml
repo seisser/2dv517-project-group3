@@ -16,4 +16,3 @@
 
     - name: Copy project-files to Ansibleserver1
       shell: scp -i "{{ key_path }}" "{{ project_tar_path }}" ubuntu@"{{ ansible_server_ip }}":/home/ubuntu
-

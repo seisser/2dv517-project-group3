@@ -2,22 +2,22 @@
 
 Group project in 2dv517....
 
-0. Important: Download https://1drv.ms/u/s!ApGgBTqo-bpPinTEVeUcxCJvIkVg?e=pnmTcc and place it in the same folder as backup.sql, ansible.cfg, the project.tar.gz etc.    
-1. Use a key named acme-key.pem, it is hardcoded in 2-3 places.
+0. Important: Download https://1drv.ms/u/s!ApGgBTqo-bpPinTEVeUcxCJvIkVg?e=pnmTcc and place it in the same folder as backup.sql, ansible.cfg, etc.    
+1. Now, from inside folder with the backup.sql, ansible.cfg etc, run "tar -cvf project.tar.gz *", which creates a project.tar.gz which will be uploaded to Ansibleserver1.
+2. Use a key named acme-key.pem, it is hardcoded in 2-3 places.
 
-2. Set your ssh-key name in vars-etc/private-vars.yml (no pathing or .pem in the end, only the name)
-3. Set your ssh-key path in ansible.cfg (use path and .pem in the end, since this is full pathing)    
+3. Set your ssh-key name in vars-etc/private-vars.yml (no pathing or .pem in the end, only the name)
+4. Set your ssh-key path in ansible.cfg (use path and .pem in the end, since this is full pathing)    
 
-4. Set variables in:
-5. vars-etc/ansible-setup-vars.yml (the ansible_server_ip should be the floating ip that openstack gives the first server created[1])
-6. also add the floating-ip which will be used for Ansibleserver1, in the vars-etc/inventory.yml[2]
-7. Run external-all-up.yml    
+5. Set variables in:
+6. vars-etc/ansible-setup-vars.yml (the ansible_server_ip should be the floating ip that openstack gives the first server created[1])
+7. also add the floating-ip which will be used for Ansibleserver1, in the vars-etc/inventory.yml[2]
+8. Run external-all-up.yml    
 
-8. ssh into the server
-9. You shouldn't have to, but might have to update according to points 1 and 2 also on the Ansibleserver1. 4 to 7 are only for the setup, from our own computers, of the Ansibleserver1.
-10. Run Playbooks/all-internal-infra-up.yml
-11. Run Playbooks/all-internal-software-up.yml    
-
+9. ssh into the server
+10. You shouldn't have to, but might have to update according to points 1 and 2 also on the Ansibleserver1. 5 to 8 are only for the setup, from our own computers, of the Ansibleserver1.
+11. Run Playbooks/all-internal-infra-up.yml
+12. Run Playbooks/all-internal-software-up.yml    
 
 
 *To test if DB-replication works: ssh into Ansibleserver1 and from there ssh into DB_master then:
