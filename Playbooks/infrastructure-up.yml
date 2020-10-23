@@ -5,7 +5,7 @@
     - ./vars-etc/instances-vars.yml
     - ./vars-etc/private-vars.yml
   tasks:
-  - name: "{{ setupweb }} 1"
+  - name: "{{ setupweb }}1"
     os_server:
       name: Webserver1
       state: present
@@ -20,7 +20,7 @@
          - SSH
          - default      
 
-  - name: "{{ setupweb }} 2"
+  - name: "{{ setupweb }}2"
     os_server:
       name: Webserver2
       state: present
@@ -35,7 +35,7 @@
          - SSH
          - default  
       
-  - name: "{{ setupweb }} 3"
+  - name: "{{ setupweb }}3"
     os_server:
       name: Webserver3
       state: present
