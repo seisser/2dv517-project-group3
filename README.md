@@ -2,8 +2,8 @@
 
 Group project in 2dv517....
 
-0. Important: Download https://1drv.ms/u/s!ApGgBTqo-bpPinMw8UZs9PnkhMh5?e=BvpmBn and place it in the same folder as backup.sql, ansible.cfg, the project.tar.gz etc.    
-1. Use a key named acme-key.pem, it is hardcoded in certain places.
+0. Important: Download https://1drv.ms/u/s!ApGgBTqo-bpPinTEVeUcxCJvIkVg?e=pnmTcc and place it in the same folder as backup.sql, ansible.cfg, the project.tar.gz etc.    
+1. Use a key named acme-key.pem, it is hardcoded in 2-3 places.
 
 2. Set your ssh-key name in vars-etc/private-vars.yml (no pathing or .pem in the end, only the name)
 3. Set your ssh-key path in ansible.cfg (use path and .pem in the end, since this is full pathing)    
@@ -25,7 +25,7 @@ Group project in 2dv517....
 Now exit (go back to Ansibleserver1) and ssh into DB_slave then:
 Type "sudo mysql -u root" and press enter, then type: "SHOW DATABASES;" and press enter, if you see acmedb in that list the replication works!
 
-*To use volume first time:
+*To use volume first time(Default usecase is for DB_master, change this in the mount-server-vars.yml if you want):
 1. create-volume.yml
 2. create-mount-point.yml (will also make the volume ext4)
 3. create-database-backup (attaches, copies database, detaches)
