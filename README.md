@@ -25,12 +25,15 @@ Group project in 2dv517....
 Now exit (go back to Ansibleserver1) and ssh into DB_slave then:
 Type "sudo mysql -u root" and press enter, then type: "SHOW DATABASES;" and press enter, if you see acmedb in that list the replication works!
 
-*To use volume:
+*To use volume first time:
 1. create-volume.yml
 2. create-mount-point.yml (will also make the volume ext4)
 3. create-database-backup (attaches, copies database, detaches)
 4. attach-and-mount.yml, ssh into DB_master, run (ls /tmp/vol/) to check that the backup was successful
 5. umount-and-detach.yml when finished
+
+*To use volume continously:
+1. create-database-backup.yml
 
 
 [1]When creating a new server, it seems as if openstack always uses the same floatingip first  
