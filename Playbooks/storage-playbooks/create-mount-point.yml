@@ -1,7 +1,10 @@
 ---
 - name: Create mount-point
-  hosts: localhost
-  
+  hosts: "{{ mountserver }}"
+  become: true
+  vars_files:
+    - mount-server-vars.yml
+
   tasks:
     - name: Create /tmp/vol
       file:
@@ -13,10 +16,10 @@
         path: /tmp/vol
         owner: ubuntu
 
-    - name: Attaching volume to ansible to create ext4 FS on it
+    - name: Attaching volume to create ext4 FS on it
       os_server_volume:
         state: present
-        server: Ansibleserver1
+        server: "{{ mountserver }}"
         volume: File_storage
         device: /dev/sdb
 

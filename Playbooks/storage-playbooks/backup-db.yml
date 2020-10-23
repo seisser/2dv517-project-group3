@@ -1,5 +1,11 @@
-- name: Dump multiple databases
-  community.mysql.mysql_db:
-    state: dump
-    name: db_1,db_2
-    target: /tmp/dump.sql
+---
+- name: Backup acmedb database
+  hosts: "{{ mountserver }}"
+  become: true
+  vars_files:
+    - mount-server-vars.yml
+  
+  tasks:
+    - name: test
+      shell: mysqldump -u root acmedb > /tmp/vol/backup.sql
+

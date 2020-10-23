@@ -1,6 +1,8 @@
 ---
 - name: Detach volume
-  hosts: localhost
+  hosts: "{{ mountserver }}"
+  vars_files:
+    - mount-server-vars.yml  
 
   tasks:
     - name: umount volumei
@@ -10,9 +12,9 @@
         src: /dev/sdb
         state: unmounted
 
-    - name: Detaching volume from Ansibleserver1
+    - name: Detaching volume
       os_server_volume:
-        server: Ansibleserver1
+        server: "{{ mountserver }}"
         volume: File_storage
         state: absent
 

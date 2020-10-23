@@ -1,0 +1,15 @@
+---
+- name: Attach volume
+  hosts: "{{ mountserver }}"
+  vars_files:
+    - mount-server-vars.yml
+
+- name: Attach and mount volume
+  import_playbook: attach-and-mount.yml
+
+- name: Copy database dump
+  import_playbook: backup-db.yml
+
+- name: Umount and detach volume
+  import_playbook: umount-detach-volume.yml
+  

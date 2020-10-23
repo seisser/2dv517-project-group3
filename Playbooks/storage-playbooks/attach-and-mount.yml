@@ -1,14 +1,14 @@
-#In order to copy to/from the volume, you must be located in it. I don't know exactly why, but Linux is a bit strange with things like this sometimes:
-#cd /tmp/vol
 ---
 - name: Attach volume
-  hosts: localhost
+  hosts: "{{ mountserver }}"
+  vars_files:
+    - mount-server-vars.yml
 
   tasks:
-  - name: Attaching volume to ansible
+  - name: Attaching volume
     os_server_volume:
       state: present
-      server: Ansibleserver1
+      server: "{{ mountserver }}"
       volume: File_storage
       device: /dev/sdb
 

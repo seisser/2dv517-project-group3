@@ -9,14 +9,14 @@ Group project in 2dv517....
 3. Set your ssh-key path in ansible.cfg (use path and .pem in the end, since this is full pathing)    
 
 4. Set variables in:
-5. vars-etc/ansible-setup-vars.yml (the ansible_server_ip should be the floating ip that openstack gives the first server created*)
-6. also add the floating-ip which will be used for Ansibleserver1, in the vars-etc/inventory.yml**
+5. vars-etc/ansible-setup-vars.yml (the ansible_server_ip should be the floating ip that openstack gives the first server created[1])
+6. also add the floating-ip which will be used for Ansibleserver1, in the vars-etc/inventory.yml[2]
 7. Run external-all-up.yml    
 
 8. ssh into the server
-9. You might again have to update according to points 1 and 2 on the Ansibleserver1. 4 to 7 are only for the setup, from our own computers, of the Ansibleserver1.
-10. Run Playbooks/all-internal-1-up.yml
-11. Run Playbooks/all-internal-2-up.yml    
+9. You shouldn't have to, but might have to update according to points 1 and 2 also on the Ansibleserver1. 4 to 7 are only for the setup, from our own computers, of the Ansibleserver1.
+10. Run Playbooks/all-internal-infra-up.yml
+11. Run Playbooks/all-internal-software-up.yml    
 
 
 
@@ -25,11 +25,17 @@ Group project in 2dv517....
 Now exit (go back to Ansibleserver1) and ssh into DB_slave then:
 Type "sudo mysql -u root" and press enter, then type: "SHOW DATABASES;" and press enter, if you see acmedb in that list the replication works!
 
+*To use volume:
+1. create-volume.yml
+2. create-mount-point.yml (will also make the volume ext4)
+3. create-database-backup (attaches, copies database, detaches)
+4. attach-and-mount.yml, ssh into DB_master, run (ls /tmp/vol/) to check that the backup was successful
+5. umount-and-detach.yml when finished
 
 
-*When creating a new server, it seems as if openstack always uses the same floatingip first  
+[1]When creating a new server, it seems as if openstack always uses the same floatingip first  
 We need to use this ip for setting up the Ansibleserver1, since the inventory script is too buggy if not used from the Ansibleserver1. And in order to copy over various files we need an ip to copy to.  
-**delete everything in the inventory and only add the floating ip for Ansibleserver1
+[2]delete everything in the inventory and only add the floating ip for Ansibleserver1
 
 
 Step-by-step setup:
