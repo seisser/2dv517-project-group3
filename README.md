@@ -3,7 +3,7 @@
 Group project in 2dv517....
 
 0. Important: Download https://1drv.ms/u/s!ApGgBTqo-bpPinTEVeUcxCJvIkVg?e=pnmTcc and place it in the same folder as backup.sql, ansible.cfg, etc.    
-1. Now, from inside folder with the backup.sql, ansible.cfg etc, run "tar -cvf project.tar.gz *", which creates a project.tar.gz which will be uploaded to Ansibleserver1.
+1. Now, from inside of the folder with the backup.sql, ansible.cfg etc, run "tar -cvf project.tar.gz *". This creates a project.tar.gz which will be uploaded to Ansibleserver1.
 2. Use a key named acme-key.pem, it is hardcoded in 2-3 places.
 
 3. Set your ssh-key name in vars-etc/private-vars.yml (no pathing or .pem in the end, only the name)
@@ -11,13 +11,9 @@ Group project in 2dv517....
 
 5. Set variables in:
 6. vars-etc/ansible-setup-vars.yml (the ansible_server_ip should be the floating ip that openstack gives the first server created[1])
-7. also add the floating-ip which will be used for Ansibleserver1, in the vars-etc/inventory.yml[2]
-8. Run external-all-up.yml    
-
-9. ssh into the server
-10. You shouldn't have to, but might have to update according to points 1 and 2 also on the Ansibleserver1. 5 to 8 are only for the setup, from our own computers, of the Ansibleserver1.
-11. Run Playbooks/all-internal-infra-up.yml
-12. Run Playbooks/all-internal-software-up.yml    
+7. Also add the floating-ip which will be used for Ansibleserver1, in the vars-etc/inventory.yml[2]
+8. Finally add the floating-ip which will be used, in the ssh command of the script deploy-all.sh 
+9. Run deploy-all.sh    
 
 
 *To test if DB-replication works: ssh into Ansibleserver1 and from there ssh into DB_master then:

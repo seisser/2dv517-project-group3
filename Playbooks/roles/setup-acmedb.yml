@@ -5,12 +5,12 @@
   tasks:
 
     - name: Create database acmedb
-      shell: mysql -u root -e "CREATE DATABASE acmedb;"
+      shell: mysql -u root -e "CREATE DATABASE IF NOT EXISTS acmedb;"
 
     - name: Create database clean_wp
-      shell: mysql -u root -e "CREATE DATABASE clean_wp;"
+      shell: mysql -u root -e "CREATE DATABASE IF NOT EXISTS clean_wp;"
 
-    - name: Give database 10sec to prepare for import of backup.sql
+    - name: Give databases 10sec to prepare for import of backup.sql
       shell: sleep 10 
 
     - name: Import backup.sql to acmedb
