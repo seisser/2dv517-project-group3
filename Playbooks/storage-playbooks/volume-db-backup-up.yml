@@ -1,0 +1,8 @@
+---
+    - hosts: localhost
+    - name:
+      import_playbook: create-volume.yml
+    - name:
+      import_playbook: create-mount-point.yml
+    - name:
+      import_playbook: create-database-backup.yml
