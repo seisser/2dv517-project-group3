@@ -3,13 +3,18 @@
 tar -cvf project.tar.gz *
 ansible-playbook Playbooks/external-playbooks/external-all-up.yml
 
-ssh -tt -i ~/.ssh/acme-key.pem ubuntu@194.47.176.245 << EOF
+test=$(grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' Playbooks/vars-etc/inventory.yml)
+echo $test
+
+ssh -tt -i ~/.ssh/acme-key.pem ubuntu@$test << EOF
 
 ansible-playbook Playbooks/internal-playbooks/all-internal-infra-up.yml
 ansible-playbook Playbooks/internal-playbooks/all-internal-software-up.yml
 
 exit
 EOF
+
+rm project.tar.gz
 
 
 

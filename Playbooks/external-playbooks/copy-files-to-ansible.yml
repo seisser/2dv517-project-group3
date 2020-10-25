@@ -6,13 +6,13 @@
 
   tasks:
     - name: Add server to known hosts
-      shell: ssh-keyscan -H "{{ ansible_server_ip }}" >> ~/.ssh/known_hosts
+      shell: ssh-keyscan -H "{{ hostvars.Ansibleserver1.ansible_host }}" >> ~/.ssh/known_hosts
 
     - name: Copy ssh-key to the ansible host
-      shell: scp -i "{{ key_path }}" "{{ key_path }}" ubuntu@"{{ ansible_server_ip }}":/home/ubuntu/.ssh
+      shell: scp -i "{{ key_path }}" "{{ key_path }}" ubuntu@"{{ hostvars.Ansibleserver1.ansible_host }}":/home/ubuntu/.ssh
 
     - name: Copy clouds.yaml to the ansible host
-      shell: scp -i "{{ key_path }}" "{{ cloud_yaml_path }}" ubuntu@"{{ ansible_server_ip }}":/home/ubuntu
+      shell: scp -i "{{ key_path }}" "{{ cloud_yaml_path }}" ubuntu@"{{ hostvars.Ansibleserver1.ansible_host }}":/home/ubuntu
 
     - name: Copy project-files to Ansibleserver1
-      shell: scp -i "{{ key_path }}" "{{ project_tar_path }}" ubuntu@"{{ ansible_server_ip }}":/home/ubuntu
+      shell: scp -i "{{ key_path }}" "{{ project_tar_path }}" ubuntu@"{{ hostvars.Ansibleserver1.ansible_host }}":/home/ubuntu
