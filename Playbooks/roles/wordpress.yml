@@ -1,22 +1,4 @@
 ---
-- name: Copy acme-site.tar.gz
-  remote_user: ubuntu
-  become: true
-  hosts: localhost
-  tasks:
-    - name:  Transfer acme_site.tar.gz to Webserver1
-      shell: ssh-keyscan -H "{{ hostvars.Webserver1.ansible_host }}" >> ~/.ssh/known_hosts
-    - name: Transfer tar.gz to Webserver
-      shell: scp -i /home/ubuntu/.ssh/acme-key.pem /home/ubuntu/acme_site.tar.gz ubuntu@"{{hostvars.Webserver1.ansible_host}}":/home/ubuntu
-    - name:  Transfer acme_site.tar.gz to Webserver2
-      shell: ssh-keyscan -H "{{ hostvars.Webserver2.ansible_host }}" >> ~/.ssh/known_hosts
-    - name: Transfer tar.gz to Webserver
-      shell: scp -i /home/ubuntu/.ssh/acme-key.pem /home/ubuntu/acme_site.tar.gz ubuntu@"{{hostvars.Webserver2.ansible_host}}":/home/ubuntu
-    - name: Transfer acme_site.tar.gz to Webserver3
-      shell: ssh-keyscan -H "{{ hostvars.Webserver3.ansible_host }}" >> ~/.ssh/known_hosts
-    - name: Transfer tar.gz to Webserver
-      shell: scp -i /home/ubuntu/.ssh/acme-key.pem /home/ubuntu/acme_site.tar.gz ubuntu@"{{hostvars.Webserver3.ansible_host}}":/home/ubuntu
-
 - name: Setting up infrastructure for, and installing/configuring, Wordpress
   remote_user: ubuntu
   become: true
@@ -44,10 +26,16 @@
         state: absent
 
     - name: install wordpress(transfer wordpress files)
+      get_url:
+        url: https://f003.backblazeb2.com/file/2dv517/acme_site.tar.gz
+        dest: /home/ubuntu
+        
+    - name: Unzip acme site
       unarchive:
         src: /home/ubuntu/acme_site.tar.gz
         dest: /var/www/html
         remote_src: yes
+        mode: '0775'
 
     - name: Set dbname in wp-config.php
       replace:
@@ -73,11 +61,6 @@
         regexp: '\b(\w*db-host-replace\w*)\b'
         replace: '{{hostvars.DB_master.ansible_host}}'
 
-    - name: Set access rights on /var/www/html
-      become: true
-      shell: chmod -R 775 /var/www/html
-      args:
-        warn: false
 
     - name: reload apache2
       systemd:
