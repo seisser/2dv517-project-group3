@@ -2,7 +2,7 @@
 
 
 
-##Instructions to run
+## Instructions to run
 
 1. Use a key named acme-key.pem  
 2. Set your ssh-key name in vars-etc/private-vars.yml (no pathing or .pem in the end, only the name)  
@@ -13,7 +13,7 @@
 7. Finally add the floating-ip which will be used, in the ssh command of the script deploy-all.sh  
 8. Run deploy-all.sh    
 
-####Volume
+#### Volume
 
 To use volume first time(Default usecase is for DB_master, change this in the mount-server-vars.yml if you want):  
 1. create-volume.yml  
