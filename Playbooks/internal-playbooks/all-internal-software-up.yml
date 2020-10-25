@@ -2,19 +2,19 @@
 - hosts: localhost
 
 - name:
-  import_playbook: roles/db.yml
+  import_playbook: ../roles/db.yml
 
 - name:
-  import_playbook: roles/db-master.yml
+  import_playbook: ../roles/db-master.yml
 
 - name:
-  import_playbook: roles/setup-acmedb.yml
+  import_playbook: ../roles/setup-acmedb.yml
 
 - name:
-  import_playbook: roles/db-slave.yml
+  import_playbook: ../roles/db-slave.yml
 
 - name:
-  import_playbook: roles/wordpress.yml
+  import_playbook: ../roles/wordpress.yml
 
 - name:
   import_playbook: NGINX-install.yml

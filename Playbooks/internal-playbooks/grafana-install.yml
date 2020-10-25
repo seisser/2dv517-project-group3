@@ -3,7 +3,7 @@
   roles:
     - role: cloudalchemy.grafana
   vars_files:
-    - ./vars-etc/private-vars.yml
+    - ../vars-etc/private-vars.yml
   vars:
     grafana_security:
       admin_user: "{{ grafanauser }}"

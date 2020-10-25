@@ -2,7 +2,7 @@
 - name: Create Openstack network infrastructure
   hosts: localhost
   vars_files:
-    - ./vars-etc/network-vars.yml
+    - ../vars-etc/network-vars.yml
   tasks:
         - name: Create network
           os_network:

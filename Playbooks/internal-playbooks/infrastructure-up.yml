@@ -2,8 +2,8 @@
 - name: Create OpenStack instances
   hosts: localhost
   vars_files:
-    - ./vars-etc/instances-vars.yml
-    - ./vars-etc/private-vars.yml
+    - ../vars-etc/instances-vars.yml
+    - ../vars-etc/private-vars.yml
   tasks:
   - name: "{{ setupweb }}1"
     os_server:

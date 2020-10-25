@@ -2,15 +2,15 @@
 - hosts: localhost
 
 - name:
-  import_playbook: infrastructure-down.yml
+  import_playbook: ./internal-playbooks/infrastructure-down.yml
 
 - name:
-  import_playbook: ansible-instance-down.yml
+  import_playbook: ./external-playbooks/ansible-instance-down.yml
 
 - name:
-  import_playbook: network-down.yml
+  import_playbook: ./external-playbooks/network-down.yml
 
 - name:
-  import_playbook: security-groups-down.yml
+  import_playbook: ./external-playbooks/security-groups-down.yml
 
 
