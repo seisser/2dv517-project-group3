@@ -20,9 +20,9 @@
   import_playbook: NGINX-install.yml
 
 - name:
-  import_playbook: ./monitoring-playbooks/prometheus-server-install.yml
+  import_playbook: prometheus-server-install.yml
 
 - name:
-  import_playbook: ./monitoring-playbooks/grafana-install.yml
+  import_playbook: grafana-install.yml
 
 
