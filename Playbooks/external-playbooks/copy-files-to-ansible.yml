@@ -2,7 +2,7 @@
 - name: Create OpenStack instances
   hosts: localhost
   vars_files:
-    - ./vars-etc/ansible-setup-vars.yml
+    - ../vars-etc/ansible-setup-vars.yml
 
   tasks:
     - name: Add server to known hosts

@@ -2,11 +2,11 @@
 - hosts: localhost
   
 - name: Network Up
-  import_playbook: ./external-playbooks/network-up.yml
+  import_playbook: network-up.yml
 
 - name: Security Groups Up
-  import_playbook: ./external-playbooks/security-groups-up.yml
+  import_playbook: security-groups-up.yml
 
 - name: Ansible Up
-  import_playbook: ./external-playbooks/ansible-instance-up.yml
+  import_playbook: ansible-instance-up.yml
 

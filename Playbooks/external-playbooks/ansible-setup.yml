@@ -4,7 +4,7 @@
   remote_user: ubuntu
   become: true
   vars_files:
-    - ./vars-etc/ansible-setup-vars.yml
+    - ../vars-etc/ansible-setup-vars.yml
   tasks:
     - name: Install packages for Ansible
       package: name={{ ansible }} update_cache=yes state=latest

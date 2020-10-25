@@ -2,7 +2,7 @@
 - name: Tear down Openstack network infrastructure
   hosts: localhost
   vars_files:
-    - ./vars-etc/network-vars.yml
+    - ../vars-etc/network-vars.yml
   tasks:
         - name: Delete router
           os_router:
