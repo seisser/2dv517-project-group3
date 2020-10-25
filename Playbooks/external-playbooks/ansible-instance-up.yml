@@ -25,6 +25,9 @@
       pause:
         seconds: 40
 
+- name: initialize-inventory.yml
+  import_playbook: initialize-local-inventory.yml
+
 - name: Copy ssh-key and clouds.yaml to Ansibleserver1
   import_playbook: copy-files-to-ansible.yml
 

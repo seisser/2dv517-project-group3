@@ -1,6 +1,6 @@
 ---
 - name: Setting up ansible
-  hosts: "{{ ansible_server_ip }}"
+  hosts: Ansibleserver1
   remote_user: ubuntu
   become: true
   vars_files:

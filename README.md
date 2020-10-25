@@ -8,10 +8,8 @@
 2. Set your ssh-key name in vars-etc/private-vars.yml (no pathing or .pem in the end, only the name)  
 3. Set your ssh-key path in ansible.cfg (use path and .pem in the end, since this is full pathing)  
 4. Set variables in:
-   vars-etc/ansible-setup-vars.yml (the ansible_server_ip should be the floating ip that openstack gives the first server created[1])  
-6. Also add the floating-ip which will be used for Ansibleserver1, in the vars-etc/inventory.yml[2]  
-7. Finally add the floating-ip which will be used, in the ssh command of the script deploy-all.sh  
-8. Run deploy-all.sh    
+   vars-etc/ansible-setup-vars.yml
+5. Run deploy-all.sh    
 
 #### Volume
 
@@ -27,11 +25,6 @@ To use volume continuously:
 
 
 ## Information
-
-1. When creating a new server, it seems as if openstack always uses the same floatingip first  
-We need to use this ip for setting up the Ansibleserver1, since the inventory script is too buggy if not used from the Ansibleserver1. And in order to copy over various files we need an ip to copy to.  
-2. Delete everything in the inventory and only add the floating ip for Ansibleserver1
-
 
 Step-by-step setup(1-3 from external location. 4-10 from Ansibleserver1):
 1. Network - Playbooks/(network-up.yml)

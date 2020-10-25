@@ -1,4 +1,4 @@
-key_name: test
+key_name: acme-key
 grafanauser: acme-admin
 grafanapsw: lord123psw
 

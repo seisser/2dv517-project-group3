@@ -1,0 +1,29 @@
+---
+- name: Create dynamic inventory
+  hosts: localhost
+  tasks:
+
+#Ansible
+    - name: Remove old inventory.yml file
+      file:
+        path: "../vars-etc/inventory.yml"
+        state: absent
+
+    - name: Create inventory.yml file
+      file:
+        path: "../vars-etc/inventory.yml"
+        state: touch
+
+    - name: Get ip for Ansible
+      shell: python3 ../openstack_inventory.py --host Ansibleserver1
+      register: result
+    - set_fact:
+        myvar: "{{ result.stdout | from_json }}"     
+    - lineinfile: 
+        path: ../vars-etc/inventory.yml 
+        line: "[ansible]"
+        insertbefore: EOF
+    - lineinfile: 
+        path: ../vars-etc/inventory.yml 
+        line: Ansibleserver1 ansible_host={{myvar.public_v4}}
+        insertbefore: EOF
