@@ -6,8 +6,14 @@
   vars_files:
     - ../vars-etc/ansible-setup-vars.yml
   tasks:
-    - name: Install packages for Ansible
-      package: name={{ ansible }} update_cache=yes state=latest
+    - name: Install packages1 for Ansible
+      package: name={{ ansible1 }} update_cache=yes state=latest
+
+    - name: Install packages2 for Ansible
+      package: name={{ ansible2 }} update_cache=yes state=latest
+
+    - name: Install packages3 for Ansible
+      package: name={{ ansible3 }} update_cache=yes state=latest
 
     - name: Install ansible openstack.cloud
       shell: ansible-galaxy collection install openstack.cloud

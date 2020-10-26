@@ -28,12 +28,6 @@
 - name: initialize-inventory.yml
   import_playbook: initialize-local-inventory.yml
 
-- name: Copy ssh-key and clouds.yaml to Ansibleserver1
-  import_playbook: copy-files-to-ansible.yml
-
-- name: Install all necessary programs and ansible modules on Ansibleserver1
-  import_playbook: ansible-setup.yml
-
 
 
 #    ToDo: Create a snapshot of the clean Ansible server
