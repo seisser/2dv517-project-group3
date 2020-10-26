@@ -1,4 +1,5 @@
 #! /bin/bash
+#Because of some problem with the information propagation from the dynamic inventory when running all the playbooks in a single play, we have to do like this
 
 tar -cvf project.tar.gz *
 ansible-playbook Playbooks/external-playbooks/external-all-up.yml
