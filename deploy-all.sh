@@ -2,6 +2,8 @@
 
 tar -cvf project.tar.gz *
 ansible-playbook Playbooks/external-playbooks/external-all-up.yml
+ansible-playbook Playbooks/external-playbooks/copy-files-to-ansible.yml
+ansible-playbook Playbooks/external-playbooks/ansible-setup.yml
 
 test=$(grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' Playbooks/vars-etc/inventory.yml)
 echo $test

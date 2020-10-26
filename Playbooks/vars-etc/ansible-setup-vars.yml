@@ -1,4 +1,6 @@
 key_path: /home/anton/.ssh/acme-key.pem
 cloud_yaml_path: /home/anton/.config/openstack/clouds.yaml
 project_tar_path: /home/anton/Skola/2dv517-project-group3/project.tar.gz
-ansible: [aptitude, build-essential, git, ntp, ntpdate, openssh-server, python-dev, python3-pip, ansible, python-setuptools]
+ansible1: [aptitude, build-essential, git, ntp]
+ansible2: [ntpdate, openssh-server, python-dev]
+ansible3: [python3-pip, ansible, python-setuptools]
