@@ -45,7 +45,7 @@
 
               server_three:
                 listen:
-                  listen_server_two:
+                  listen_server_three:
                     port: 80
                 server_name: "{{ hostvars.Webserver3.ansible_host }}"
 

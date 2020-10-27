@@ -1,0 +1,31 @@
+---
+- name: Scale up webservers
+  hosts: localhost
+  vars_files:
+    - ../vars-etc/instances-vars.yml
+    - ../vars-etc/private-vars.yml
+  tasks:
+    - name: "{{ setupweb }}{{ server_nr }}"
+      os_server:
+        name: Webserver{{ server_nr }}
+        state: present
+        region_name: RegionOne
+        image: Ubuntu server 20.04
+        availability_zone: Education
+        key_name: "{{ key_name }}"
+        network: "{{ network }}"
+        auto_ip: false
+        flavor: c2-r4-d10
+        security_groups:
+          - SSH
+          - default
+
+    - name: Get ip for Webserver{{ server_nr }}
+      shell: ../openstack_inventory.py --host Webserver{{ server_nr }}
+      register: result
+    - set_fact:
+        myvar: "{{ result.stdout | from_json }}"
+    - lineinfile:
+        path: ../vars-etc/inventory.yml
+        line: Webserver{{ server_nr }} ansible_host={{myvar.private_v4}}
+        insertbefore: EOF

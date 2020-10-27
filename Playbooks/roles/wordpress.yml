@@ -2,7 +2,7 @@
 - name: Setting up infrastructure for, and installing/configuring, Wordpress
   remote_user: ubuntu
   become: true
-  hosts: Webserver1:Webserver2:Webserver3
+  hosts: webservers
   vars_files:
     - ../vars-etc/wordpress-vars.yml
   tasks:
