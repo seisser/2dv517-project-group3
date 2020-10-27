@@ -29,3 +29,7 @@
         path: ../vars-etc/inventory.yml
         line: Webserver{{ server_nr }} ansible_host={{myvar.private_v4}}
         insertbefore: EOF
+
+    - name: Prior to installation of software, pause for 30 secs to allow webserver to complete its startup
+      pause:
+        seconds: 30
