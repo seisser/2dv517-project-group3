@@ -25,7 +25,7 @@
         path: /var/www/html/index.html
         state: absent
 
-    - name: install wordpress(transfer wordpress files)
+    - name: install wordpress(download wordpress files)
       get_url:
         url: https://f003.backblazeb2.com/file/2dv517/acme_site.tar.gz
         dest: /home/ubuntu
