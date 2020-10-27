@@ -72,7 +72,7 @@
         state: directory
 
     - name: Run configuration script DB_master
-      script: ~/Scripts/dbmaster.sh {{ hostvars.DB_slave.ansible_host }} {{ hostvars.Webserver1.ansible_host }} {{ hostvars.Webserver2.ansible_host }} {{ hostvars.Webserver3.ansible_host }}
+      script: ~/Scripts/dbmaster.sh {{ hostvars.DB_slave.ansible_host }}
 
 - hosts: localhost
   tasks:
