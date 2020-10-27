@@ -14,9 +14,7 @@
 #### Volume
 
 To use volume first time(Default usecase is for DB_master, change this in the mount-server-vars.yml if you want):  
-1. create-volume.yml  
-2. create-mount-point.yml (will also make the volume ext4)  
-3. create-database-backup (attaches, copies database, detaches)  
+1. volume-db-backup-up.yml
 4. attach-and-mount.yml, ssh into DB_master, run (ls /tmp/vol/) to check that the backup was successful  
 5. umount-and-detach.yml when finished  
 
